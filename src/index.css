@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nirman Infrastructure Design System - Light theme with glowing accents */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+
+    /* Primary - Corporate Blue */
+    --primary: 214 95% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 214 95% 70%;
+
+    /* Secondary - Elegant Purple */
+    --secondary: 260 80% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 260 80% 75%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 214 95% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 214 95% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+    
+    /* Glowing shadows */
+    --shadow-glow-primary: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-glow-secondary: 0 0 30px hsl(var(--secondary) / 0.3);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Keep dark mode simple for now - focus on light theme */
+  .dark {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 214 95% 60%;
+    --primary-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+}
+
+/* Custom component classes */
+@layer components {
+  /* Glowing button variants */
+  .btn-glow-primary {
+    @apply text-primary-foreground rounded-xl px-8 py-4 font-semibold;
+    @apply transition-all duration-300 ease-out relative overflow-hidden;
+    @apply hover:shadow-[0_8px_32px_hsl(var(--primary)/0.4)];
+    @apply hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    box-shadow: 
+      0 4px 15px hsl(var(--primary) / 0.35),
+      0 2px 8px hsl(var(--primary) / 0.2),
+      inset 0 1px 0 hsl(var(--primary-glow) / 0.4);
+  }
+
+  .btn-glow-primary::before {
+    @apply absolute top-0 left-[-100%] w-full h-full;
+    content: '';
+    background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-glow-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-glow-secondary {
+    @apply text-secondary-foreground rounded-xl px-8 py-4 font-semibold;
+    @apply transition-all duration-300 ease-out relative overflow-hidden;
+    @apply hover:shadow-[0_8px_32px_hsl(var(--secondary)/0.4)];
+    @apply hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    box-shadow: 
+      0 4px 15px hsl(var(--secondary) / 0.35),
+      0 2px 8px hsl(var(--secondary) / 0.2),
+      inset 0 1px 0 hsl(var(--secondary-glow) / 0.4);
+  }
+
+  .btn-glow-secondary::before {
+    @apply absolute top-0 left-[-100%] w-full h-full;
+    content: '';
+    background: linear-gradient(90deg, transparent, hsl(var(--secondary-foreground) / 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-glow-secondary:hover::before {
+    left: 100%;
+  }
+
+  /* Hero section */
+  .hero-gradient {
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--secondary) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(var(--accent) / 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted) / 0.3) 100%);
+    position: relative;
+  }
+
+  .hero-gradient::before {
+    content: '';
+    @apply absolute inset-0;
+    background: 
+      radial-gradient(circle at 30% 40%, hsl(var(--primary) / 0.08) 0%, transparent 70%),
+      radial-gradient(circle at 70% 60%, hsl(var(--secondary) / 0.08) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  /* Card styles */
+  .card-glow {
+    @apply bg-card border border-border rounded-2xl shadow-lg relative overflow-hidden;
+    @apply transition-all duration-300 ease-out backdrop-blur-sm;
+    box-shadow: 
+      0 4px 6px -1px hsl(var(--foreground) / 0.1),
+      0 2px 4px -1px hsl(var(--foreground) / 0.06),
+      0 0 0 1px hsl(var(--primary) / 0.05),
+      inset 0 1px 0 hsl(var(--background) / 0.1);
+  }
+
+  .card-glow::before {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    content: '';
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.03) 0%, transparent 50%, hsl(var(--secondary) / 0.03) 100%);
+  }
+
+  .card-glow:hover {
+    @apply -translate-y-2;
+    box-shadow: 
+      0 20px 25px -5px hsl(var(--foreground) / 0.15),
+      0 10px 10px -5px hsl(var(--foreground) / 0.08),
+      0 0 0 1px hsl(var(--primary) / 0.1),
+      0 0 20px hsl(var(--primary) / 0.15),
+      inset 0 1px 0 hsl(var(--background) / 0.2);
+  }
+
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Navigation underline effect */
+  .nav-link {
+    @apply relative transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+    content: '';
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Glowing text */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  /* Gallery hover effects */
+  .gallery-item {
+    @apply relative overflow-hidden rounded-xl transition-all duration-300;
+    @apply hover:shadow-[0_20px_40px_hsl(var(--primary)/0.2)];
+    @apply hover:scale-105;
+  }
+
+  .gallery-item::before {
+    @apply absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent;
+    @apply opacity-0 transition-opacity duration-300 z-10;
+    content: '';
+  }
+
+  .gallery-item:hover::before {
+    @apply opacity-100;
+  }
+}
