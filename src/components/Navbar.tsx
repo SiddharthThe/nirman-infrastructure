@@ -30,7 +30,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/src/assets/nirman-logo-full.png" 
+              src="/nirman-logo-full.png" 
               alt="Nirman Infrastructure" 
               className="h-8 w-auto object-contain"
             />

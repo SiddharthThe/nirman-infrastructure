@@ -53,7 +53,7 @@ const Hero = () => {
           {/* Company Logo */}
           <div className="flex justify-center mb-8">
             <img 
-              src="/src/assets/nirman-logo-full.png" 
+              src="/nirman-logo-full.png" 
               alt="Nirman Infrastructure - The skyline of Trust" 
               className="h-20 w-auto object-contain drop-shadow-2xl"
             />
