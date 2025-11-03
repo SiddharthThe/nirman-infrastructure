@@ -1,16 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import { gsap } from 'gsap';
+import { toast } from 'sonner'; // Make sure to install: npm install sonner
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+  hp: string; // honeypot field
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
+    hp: '' // honeypot field - should remain empty
   });
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const formRef = useRef<HTMLFormElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
@@ -28,48 +41,125 @@ const Contact = () => {
     );
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, you'd send the data to your backend
-    setIsSubmitted(true);
+  // Extract UTM parameters from URL
+  const getUTMParameters = (): string => {
+    if (typeof window === 'undefined') return '{}';
     
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
-      });
-    }, 3000);
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmParams: Record<string, string> = {};
+    
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(param => {
+      const value = urlParams.get(param);
+      if (value) utmParams[param] = value;
+    });
+    
+    return JSON.stringify(utmParams);
+  };
+
+  // Client-side validation
+  const validateForm = (): string[] => {
+    const errors: string[] = [];
+
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errors.push('Name must be at least 2 characters long');
+    }
+
+    if (!formData.phone.trim() || formData.phone.trim().length < 7) {
+      errors.push('Please enter a valid phone number');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      errors.push('Please enter a valid email address');
+    }
+
+    if (!formData.service.trim()) {
+      errors.push('Please select a service');
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      errors.push('Message must be at least 10 characters long');
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (isSubmitting) return;
+
+    // Client-side validation
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      toast.error(validationErrors[0]);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const subject = encodeURIComponent('Project Inquiry from ' + formData.name);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`
+      );
+      window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
+
+      setIsSubmitted(true);
+      toast.success('Thank you! Your message has been sent successfully.');
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+          hp: ''
+        });
+      }, 3000);
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+      
+      if (error.message.includes('Too many requests')) {
+        toast.error('Too many requests. Please wait a moment before trying again.');
+      } else if (error.message.includes('Failed to fetch')) {
+        toast.error('Network error. Please check your connection and try again.');
+      } else {
+        toast.error('Something went wrong. Please try again later.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["123 Construction Avenue", "Business District, City 12345"],
+      details: ["Ratnagiri, Konkan Region", "Maharashtra, India"],
       color: "text-blue-500"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+      details: ["+91 7020715099"],
       color: "text-green-500"
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@nirmaninfra.com", "projects@nirmaninfra.com"],
+      details: ["technirmaninfrastructurepvtltd@gmail.com"],
       color: "text-purple-500"
     },
     {
@@ -125,7 +215,6 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
-
             </div>
 
             {/* Contact Form */}
@@ -141,7 +230,25 @@ const Contact = () => {
                   </p>
                 </div>
               ) : (
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={(e) => {
+                  e.preventDefault();
+                  const subject = encodeURIComponent('Project Inquiry from ' + formData.name);
+                  const body = encodeURIComponent(
+                    `Name: ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`
+                  );
+                  window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
+                }} className="space-y-6">
+                  {/* Honeypot field - hidden from users */}
+                  <input
+                    type="text"
+                    name="hp"
+                    value={formData.hp}
+                    onChange={handleChange}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
@@ -153,26 +260,27 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="John Doe"
                       />
                     </div>
-                    
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
-                        Phone Number
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                        placeholder="+1 (555) 123-4567"
+                        required
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Email Address *
@@ -183,20 +291,22 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="john@example.com"
                     />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Service Interested In
+                      Service Interested In *
                     </label>
                     <select
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <option value="">Select a service...</option>
                       <option value="commercial">Commercial Construction</option>
@@ -206,7 +316,6 @@ const Contact = () => {
                       <option value="consultation">General Consultation</option>
                     </select>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Project Details *
@@ -216,15 +325,20 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       rows={4}
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Tell us about your project requirements, timeline, and any specific needs..."
                     />
                   </div>
-
                   <button
                     type="submit"
-                    className="btn-glow-primary w-full flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className={`w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                      isSubmitting 
+                        ? 'bg-muted text-muted-foreground cursor-not-allowed' 
+                        : 'btn-glow-primary hover:scale-105'
+                    }`}
                   >
                     Send Message
                     <Send size={18} />

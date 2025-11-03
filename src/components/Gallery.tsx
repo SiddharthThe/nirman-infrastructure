@@ -17,7 +17,7 @@ interface GalleryProps {
 }
 
 const Gallery = ({ projects }: GalleryProps) => {
-  const [filter, setFilter] = useState<'all' | 'completed' | 'ongoing'>('all');
+  const [filter, setFilter] = useState<'all' | 'completed'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -58,7 +58,7 @@ const Gallery = ({ projects }: GalleryProps) => {
     <div className="space-y-8">
       {/* Filter Buttons */}
       <div className="flex justify-center gap-4">
-        {['all', 'completed', 'ongoing'].map((filterOption) => (
+        {['all', 'completed'].map((filterOption) => (
           <button
             key={filterOption}
             onClick={() => setFilter(filterOption as any)}
@@ -93,12 +93,8 @@ const Gallery = ({ projects }: GalleryProps) => {
               <p className="text-muted-foreground text-sm mb-2">{project.description}</p>
               <div className="flex justify-between items-center text-xs text-muted-foreground">
                 <span>{project.location}</span>
-                <span className={`px-2 py-1 rounded-full ${
-                  project.category === 'completed' 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-orange-100 text-orange-700'
-                }`}>
-                  {project.category}
+                <span className="px-2 py-1 rounded-full bg-green-100 text-green-700">
+                  {project.year}
                 </span>
               </div>
             </div>

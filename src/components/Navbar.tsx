@@ -51,12 +51,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link 
-              to="/quote"
-              className="btn-glow-primary text-sm"
-            >
-              Get Quote
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -88,13 +82,6 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link 
-                to="/quote"
-                className="btn-glow-primary inline-block text-center w-fit"
-                onClick={() => setIsOpen(false)}
-              >
-                Get Quote
-              </Link>
             </div>
           </div>
         )}

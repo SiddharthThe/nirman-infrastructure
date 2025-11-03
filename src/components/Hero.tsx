@@ -79,12 +79,12 @@ const Hero = () => {
 
           {/* Action Buttons */}
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Link to="/projects" className="btn-glow-primary flex items-center gap-2">
-              View Our Projects
+            <Link to="/contact" className="btn-glow-primary flex items-center gap-2">
+              Contact Us
               <ArrowRight size={20} />
             </Link>
-            <Link to="/contact" className="btn-glow-secondary">
-              Schedule Consultation
+            <Link to="/projects" className="btn-glow-secondary flex items-center gap-2">
+              View Our Projects
             </Link>
           </div>
 

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Award, Users, Clock, Target } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import aboutImg from '../assets/about-img.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,31 +43,31 @@ const About = () => {
   }, []);
 
   const stats = [
-    { icon: Award, value: '500+', label: 'Completed Projects' },
-    { icon: Users, value: '200+', label: 'Expert Team Members' },
-    { icon: Clock, value: '15+', label: 'Years of Excellence' },
-    { icon: Target, value: '98%', label: 'Client Satisfaction' },
+    { icon: Award, value: '1000+', label: 'Completed Projects' },
+    { icon: Users, value: '7', label: 'Expert Partners' },
+    { icon: Clock, value: '19+', label: 'Years of Excellence' },
+    { icon: Target, value: '30+', label: 'Years Partner Experience' },
   ];
 
   const values = [
     {
-      title: 'Innovation',
-      description: 'We embrace cutting-edge technology and innovative solutions to deliver exceptional results.',
+      title: 'Technical Expertise',
+      description: 'With over 30 years of combined experience per partner, we bring unmatched technical knowledge and engineering excellence to every project.',
       color: 'text-blue-500'
     },
     {
-      title: 'Quality',
-      description: 'Every project meets the highest standards of quality and craftsmanship.',
+      title: 'Quality & Safety',
+      description: 'Every project meets the highest standards of quality, safety protocols, and craftsmanship ensuring lasting infrastructure.',
       color: 'text-purple-500'
     },
     {
-      title: 'Sustainability',
-      description: 'We build with the environment in mind, creating sustainable infrastructure for the future.',
+      title: 'Cost Efficiency',
+      description: 'We leverage our extensive experience to deliver projects that are cost-efficient without compromising on quality or safety.',
       color: 'text-green-500'
     },
     {
-      title: 'Trust',
-      description: 'Our clients trust us to deliver on time, on budget, and beyond expectations.',
+      title: 'Trust & Reliability',
+      description: 'As a trusted name in Ratnagiri and beyond, our clients rely on us for on-time delivery and exceptional results across all sectors.',
       color: 'text-orange-500'
     },
   ];
@@ -77,11 +78,11 @@ const About = () => {
       <section className="py-20 hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            About <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Nirman</span>
+            About <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Technirman Infrastructure</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            With over 15 years of experience in the construction and infrastructure industry, 
-            Nirman Infrastructure has established itself as a leader in delivering world-class projects.
+            From the Konkan region of Maharashtra, Ratnagiri - A dynamic and reliable construction company 
+            committed to delivering high-quality building solutions across residential, commercial, and industrial sectors.
           </p>
         </div>
       </section>
@@ -96,26 +97,33 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 2008, Nirman Infrastructure began with a simple vision: 
-                  to transform the construction industry through innovative solutions 
-                  and uncompromising quality.
+                  We are from the Konkan region of Maharashtra, Ratnagiri. We have great pleasure to introduce 
+                  ourselves as M/S NIRMAN INFRASTRUCTURES - Civil Engineers, Contractors & Developers, 
+                  a Partnership firm of seven partners, each having experience of not less than 30 years 
+                  in the civil engineering field across diversified projects.
                 </p>
                 <p>
-                  From our humble beginnings with small residential projects, we have 
-                  grown to become a trusted partner for major commercial, residential, 
-                  and infrastructure developments across the region.
+                  Our firm was formed with the intention to undertake major infrastructural projects in Public, 
+                  Private & Industrial sectors, while making the most efficient utilization of our partners' 
+                  extensive experience for cost-efficient & quality output.
                 </p>
                 <p>
-                  Our success is built on the foundation of skilled professionals, 
-                  cutting-edge technology, and an unwavering commitment to excellence 
-                  in every project we undertake.
+                  Established in 2006, we have been working in Ratnagiri and are engaged in Residential projects, 
+                  Public sector projects, construction management, cost analysis, and all types of surveying & 
+                  valuation works. In 2011, Nirman Infrastructures evolved into Technirman Infrastructure Pvt. Ltd., 
+                  marking a new chapter in our journey towards excellence in infrastructure development.
+                </p>
+                <p>
+                  With a strong foundation in technical expertise, safety, and project management, Technirman 
+                  Infrastructure Pvt Ltd has established itself as a trusted name in the construction industry, 
+                  celebrating over 14 years of excellence in construction and real estate development.
                 </p>
               </div>
             </div>
             <div className="aspect-square bg-muted rounded-xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=600&fit=crop" 
-                alt="Company Story"
+                src={aboutImg} 
+                alt="Technirman Infrastructure Office - Ratnagiri"
                 className="w-full h-full object-cover"
               />
             </div>

@@ -17,8 +17,9 @@ const Footer = () => {
               <span className="text-2xl font-bold text-foreground">Nirman Infrastructure</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
-              Building tomorrow's infrastructure with cutting-edge technology, 
-              unmatched expertise, and commitment to excellence.
+              A dynamic and reliable construction company from Ratnagiri, Maharashtra, 
+              committed to delivering high-quality building solutions across residential, 
+              commercial, and industrial sectors.
             </p>
             <div className="flex space-x-4">
               {[
@@ -66,15 +67,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-3 text-muted-foreground">
                 <MapPin size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">123 Construction Ave, City, State 12345</span>
+                <span className="text-sm">Ratnagiri, Maharashtra</span>
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground">
                 <Phone size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <span className="text-sm">+91 7020715099</span>
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground">
                 <Mail size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">info@nirmaninfra.com</span>
+                <span className="text-sm">technirmaninfrastructurepvtltd@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -84,7 +85,7 @@ const Footer = () => {
         <div className="border-t border-border mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Nirman Infrastructure. All rights reserved.
+              © {currentYear} Technirman Infrastructure Pvt. Ltd. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">

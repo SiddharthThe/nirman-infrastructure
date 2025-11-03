@@ -38,16 +38,18 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
+            {[ 
               {
-                title: "Modern Business Complex",
-                category: "Commercial",
-                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
+                title: "Guest House Ratnagiri",
+                category: "Residential",
+                image: "/src/assets/project-img/Guest House Ratnagiri_.jpg",
+                description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design."
               },
               {
-                title: "Residential Township",
-                category: "Residential",
-                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
+                title: "Mandvi Jetty - Coastal Infrastructure",
+                category: "Infrastructure",
+                image: "/src/assets/project-img/Mandvi Jetty_.jpg",
+                description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism."
               }
             ].map((project, index) => (
               <div key={index} className="card-glow p-6">
@@ -61,6 +63,7 @@ const Home = () => {
                 <div className="space-y-2">
                   <div className="text-sm text-primary font-medium">{project.category}</div>
                   <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm">{project.description}</p>
                 </div>
               </div>
             ))}

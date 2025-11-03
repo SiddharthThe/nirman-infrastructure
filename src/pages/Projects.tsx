@@ -14,61 +14,79 @@ const Projects = () => {
     );
   }, []);
 
-  // Demo project data
+  // Project data with actual images
   const projects = [
     {
       id: 1,
-      title: "Metro Business Complex",
+      title: "Guest House Ratnagiri",
       category: "completed" as const,
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
-      description: "A state-of-the-art 50-story business complex featuring modern office spaces, retail outlets, and premium amenities in the heart of the city.",
-      location: "Downtown City Center",
+  image: "/src/assets/project-img/Guest House Ratnagiri_.jpg",
+      description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design.",
+      location: "Ratnagiri, Maharashtra",
       year: "2023"
     },
     {
       id: 2,
-      title: "Riverside Residential Township",
+      title: "Mandvi Jetty - Coastal Infrastructure",
       category: "completed" as const,
-      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-      description: "A luxurious gated community with 200 premium villas, complete with modern infrastructure, parks, and recreational facilities.",
-      location: "Riverside Valley",
-      year: "2023"
-    },
-    {
-      id: 3,
-      title: "Smart City Infrastructure",
-      category: "ongoing" as const,
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
-      description: "Comprehensive infrastructure development including roads, utilities, and smart city solutions spanning 500 acres.",
-      location: "New Development Zone",
-      year: "2024"
-    },
-    {
-      id: 4,
-      title: "Green Energy Plant",
-      category: "ongoing" as const,
-      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop",
-      description: "Sustainable energy facility with solar panels and wind turbines, contributing to the region's renewable energy goals.",
-      location: "Industrial Park",
-      year: "2024"
-    },
-    {
-      id: 5,
-      title: "Heritage Mall Renovation",
-      category: "completed" as const,
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop",
-      description: "Complete renovation of a historic shopping center, blending traditional architecture with modern amenities.",
-      location: "Heritage District",
+  image: "/src/assets/project-img/Mandvi Jetty_.jpg",
+      description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism.",
+      location: "Mandvi, Ratnagiri",
       year: "2022"
     },
     {
+      id: 3,
+      title: "MBRS Ratnagiri",
+      category: "completed" as const,
+  image: "/src/assets/project-img/MBRS Ratnagiri_.jpg",
+      description: "Multi-story building project with modern architecture located in the scenic coastal region of Ratnagiri.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2023"
+    },
+    {
+      id: 4,
+      title: "Panval Dam",
+      category: "completed" as const,
+  image: "/src/assets/project-img/Panval Dam.jpg",
+      description: "Major water management infrastructure project featuring check dam construction for irrigation and water conservation.",
+      location: "Panval, Ratnagiri District",
+      year: "2022"
+    },
+    {
+      id: 5,
+      title: "Police Station Nate",
+      category: "completed" as const,
+  image: "/src/assets/project-img/Police Station Nate.jpg",
+      description: "Government institutional building with solar power integration, modern facilities, and community-focused design.",
+      location: "Nate, Ratnagiri",
+      year: "2023"
+    },
+    {
       id: 6,
-      title: "Tech Campus Development",
-      category: "ongoing" as const,
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
-      description: "Modern technology campus with flexible workspaces, research facilities, and innovation centers for leading tech companies.",
-      location: "Tech Valley",
-      year: "2024"
+      title: "Tilak Smarak Ratnagiri",
+      category: "completed" as const,
+  image: "/src/assets/project-img/Tilak Smarak Ratnagiri_.jpg",
+      description: "Heritage memorial building featuring traditional architecture with modern restoration and preservation techniques.",
+      location: "Ratnagiri",
+      year: "2022"
+    },
+    {
+      id: 7,
+      title: "Ambedkar Bhavan",
+      category: "completed" as const,
+  image: "/src/assets/project-img/Ambedkar Bhavan_.jpg",
+      description: "Large-scale public institutional building featuring distinctive architecture and modern community facilities.",
+      location: "Ratnagiri District",
+      year: "2021"
+    },
+    {
+      id: 8,
+      title: "Asode Dam",
+      category: "completed" as const,
+  image: "/src/assets/project-img/Asode Dam.jpg",
+      description: "Major river dam infrastructure project for irrigation, flood control, and water resource management in the Konkan region.",
+      location: "Asode, Maharashtra",
+      year: "2023"
     }
   ];
 
@@ -84,8 +102,8 @@ const Projects = () => {
               Our <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Projects</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore our portfolio of exceptional infrastructure projects that showcase 
-              our expertise in creating sustainable and innovative solutions.
+              Showcasing 19+ years of excellence in construction and infrastructure development 
+              across Ratnagiri and the Konkan region of Maharashtra.
             </p>
           </div>
         </div>
