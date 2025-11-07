@@ -30,15 +30,19 @@ const Contact = () => {
 
   useEffect(() => {
     // Animate contact sections
-    gsap.fromTo(contactInfoRef.current?.children,
-      { x: -50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
-    );
+    if (contactInfoRef.current) {
+      gsap.fromTo(contactInfoRef.current.children,
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
+      );
+    }
 
-    gsap.fromTo(formRef.current,
-      { x: 50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
-    );
+    if (formRef.current) {
+      gsap.fromTo(formRef.current,
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
+      );
+    }
   }, []);
 
   // Extract UTM parameters from URL

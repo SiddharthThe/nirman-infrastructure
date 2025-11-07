@@ -22,20 +22,34 @@ const Footer = () => {
               commercial, and industrial sectors.
             </p>
             <div className="flex space-x-4">
-              {[
-                { Icon: Facebook, href: '#' },
-                { Icon: Twitter, href: '#' },
-                { Icon: Linkedin, href: '#' },
-                { Icon: Instagram, href: '#' }
-              ].map(({ Icon, href }, index) => (
-                <a
-                  key={index}
-                  href={href}
-                  className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
+              {/* Social Links */}
+              <a
+                href="https://www.facebook.com/share/1AATQ5zUTE/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://x.com/infra_nirman?t=Jh7LRhst0YfqxsXalzw6VA&s=08"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                aria-label="X (Twitter)"
+              >
+                <Twitter size={18} />
+              </a>
+              <a
+                href="https://in.linkedin.com/company/nirman-infrastructures"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </a>
             </div>
           </div>
 
