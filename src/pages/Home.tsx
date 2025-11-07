@@ -38,17 +38,17 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[ 
+            {[
               {
                 title: "Guest House Ratnagiri",
                 category: "Residential",
-                image: "/src/assets/project-img/Guest House Ratnagiri_.jpg",
+                image: "/assets/project-img/guest-house-ratnagiri.jpg",
                 description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design."
               },
               {
                 title: "Mandvi Jetty - Coastal Infrastructure",
                 category: "Infrastructure",
-                image: "/src/assets/project-img/Mandvi Jetty_.jpg",
+                image: "/assets/project-img/mandvi-jetty.jpg",
                 description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism."
               }
             ].map((project, index) => (

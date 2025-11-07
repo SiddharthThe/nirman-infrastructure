@@ -20,7 +20,7 @@ const Projects = () => {
       id: 1,
       title: "Guest House Ratnagiri",
       category: "completed" as const,
-  image: "/src/assets/project-img/Guest House Ratnagiri_.jpg",
+      image: "/assets/project-img/guest-house-ratnagiri.jpg",
       description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design.",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
@@ -29,7 +29,7 @@ const Projects = () => {
       id: 2,
       title: "Mandvi Jetty - Coastal Infrastructure",
       category: "completed" as const,
-  image: "/src/assets/project-img/Mandvi Jetty_.jpg",
+      image: "/assets/project-img/mandvi-jetty.jpg",
       description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism.",
       location: "Mandvi, Ratnagiri",
       year: "2022"
@@ -38,7 +38,7 @@ const Projects = () => {
       id: 3,
       title: "MBRS Ratnagiri",
       category: "completed" as const,
-  image: "/src/assets/project-img/MBRS Ratnagiri_.jpg",
+      image: "/assets/project-img/mbrs-ratnagiri.jpg",
       description: "Multi-story building project with modern architecture located in the scenic coastal region of Ratnagiri.",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
@@ -47,7 +47,7 @@ const Projects = () => {
       id: 4,
       title: "Panval Dam",
       category: "completed" as const,
-  image: "/src/assets/project-img/Panval Dam.jpg",
+      image: "/assets/project-img/panval-dam.jpg",
       description: "Major water management infrastructure project featuring check dam construction for irrigation and water conservation.",
       location: "Panval, Ratnagiri District",
       year: "2022"
@@ -56,7 +56,7 @@ const Projects = () => {
       id: 5,
       title: "Police Station Nate",
       category: "completed" as const,
-  image: "/src/assets/project-img/Police Station Nate.jpg",
+      image: "/assets/project-img/police-station-nate.jpg",
       description: "Government institutional building with solar power integration, modern facilities, and community-focused design.",
       location: "Nate, Ratnagiri",
       year: "2023"
@@ -65,7 +65,7 @@ const Projects = () => {
       id: 6,
       title: "Tilak Smarak Ratnagiri",
       category: "completed" as const,
-  image: "/src/assets/project-img/Tilak Smarak Ratnagiri_.jpg",
+      image: "/assets/project-img/tilak-smarak-ratnagiri.jpg",
       description: "Heritage memorial building featuring traditional architecture with modern restoration and preservation techniques.",
       location: "Ratnagiri",
       year: "2022"
@@ -74,7 +74,7 @@ const Projects = () => {
       id: 7,
       title: "Ambedkar Bhavan",
       category: "completed" as const,
-  image: "/src/assets/project-img/Ambedkar Bhavan_.jpg",
+      image: "/assets/project-img/ambedkar-bhavan.jpg",
       description: "Large-scale public institutional building featuring distinctive architecture and modern community facilities.",
       location: "Ratnagiri District",
       year: "2021"
@@ -83,7 +83,7 @@ const Projects = () => {
       id: 8,
       title: "Asode Dam",
       category: "completed" as const,
-  image: "/src/assets/project-img/Asode Dam.jpg",
+      image: "/assets/project-img/asode-dam.jpg",
       description: "Major river dam infrastructure project for irrigation, flood control, and water resource management in the Konkan region.",
       location: "Asode, Maharashtra",
       year: "2023"
