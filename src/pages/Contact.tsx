@@ -151,19 +151,34 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["Ratnagiri, Konkan Region", "Maharashtra, India"],
+      details: [
+        {
+          label: "Nirman Infrastructure, Ratnagiri, Maharashtra 415612",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Nirman%20Infrastructure%20Ratnagiri%2C%20Office%20No.%2006%20%26%2007%2C%20First%20Floor%20Indradhanu%20Behind%20Chhatrapati%20Shivaji%20Maharaj%20Stadium%2C%20SV%20Rd%2C%20Hindu%20Colony%2C%20Abhyudhya%20Nagar%2C%20Ratnagiri%2C%20Maharashtra%20415612"
+        }
+      ],
       color: "text-blue-500"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+91 7020715099"],
+      details: [
+        {
+          label: "+91 7020715099",
+          telUrl: "tel:+917020715099"
+        }
+      ],
       color: "text-green-500"
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["technirmaninfrastructurepvtltd@gmail.com"],
+      details: [
+        {
+          label: "technirmaninfrastructurepvtltd@gmail.com",
+          mailUrl: "mailto:technirmaninfrastructurepvtltd@gmail.com"
+        }
+      ],
       color: "text-purple-500"
     },
     {
@@ -207,15 +222,41 @@ const Contact = () => {
               </div>
 
               {contactInfo.map(({ icon: Icon, title, details }, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon size={20} className="text-primary" />
+                <div key={index} className="flex items-start space-x-4 py-2">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <Icon size={18} className="text-primary" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">{title}</h3>
-                    {details.map((detail, idx) => (
-                      <p key={idx} className="text-muted-foreground text-sm">{detail}</p>
-                    ))}
+                  <div className="flex flex-col justify-center">
+                    <h3 className="font-semibold text-foreground mb-1 text-base">{title}</h3>
+                    {details.map((detail, idx) => {
+                      if (typeof detail === 'string') {
+                        return (
+                          <p key={idx} className="text-muted-foreground text-sm">{detail}</p>
+                        );
+                      } else {
+                        let href = '';
+                        let isExternal = false;
+                        if ('mapUrl' in detail) {
+                          href = detail.mapUrl;
+                          isExternal = true;
+                        } else if ('telUrl' in detail) {
+                          href = detail.telUrl;
+                        } else if ('mailUrl' in detail) {
+                          href = detail.mailUrl;
+                        }
+                        return (
+                          <a
+                            key={idx}
+                            href={href}
+                            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                            className="text-sm font-medium text-foreground hover:text-primary transition-colors break-all"
+                            style={{ textDecoration: 'none', marginBottom: '2px' }}
+                          >
+                            {detail.label}
+                          </a>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
               ))}
@@ -315,6 +356,7 @@ const Contact = () => {
                       <option value="">Select a service...</option>
                       <option value="commercial">Commercial Construction</option>
                       <option value="residential">Residential Development</option>
+                      <option value="flat-enquiry">Flat Enquiry</option>
                       <option value="infrastructure">Infrastructure Solutions</option>
                       <option value="project-management">Project Management</option>
                       <option value="consultation">General Consultation</option>

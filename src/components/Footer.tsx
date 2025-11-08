@@ -79,17 +79,37 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Contact Info</h3>
             <ul className="space-y-3">
-              <li className="flex items-center space-x-3 text-muted-foreground">
-                <MapPin size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">Ratnagiri, Maharashtra</span>
+              <li className="flex items-start space-x-3 text-muted-foreground">
+                <MapPin size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Nirman%20Infrastructure%20Ratnagiri%2C%20Office%20No.%2006%20%26%2007%2C%20First%20Floor%20Indradhanu%20Behind%20Chhatrapati%20Shivaji%20Maharaj%20Stadium%2C%20SV%20Rd%2C%20Hindu%20Colony%2C%20Abhyudhya%20Nagar%2C%20Ratnagiri%2C%20Maharashtra%20415612"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground hover:text-primary transition-colors font-medium leading-snug"
+                  style={{ maxWidth: '220px', display: 'inline-block', wordBreak: 'break-word' }}
+                >
+                  Nirman Infrastructure, Ratnagiri, Maharashtra 415612
+                </a>
               </li>
-              <li className="flex items-center space-x-3 text-muted-foreground">
-                <Phone size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">+91 7020715099</span>
+              <li className="flex items-start space-x-3 text-muted-foreground">
+                <Phone size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                <a
+                  href="tel:+917020715099"
+                  className="text-sm text-foreground hover:text-primary transition-colors font-medium"
+                  style={{ letterSpacing: '0.01em' }}
+                >
+                  +91 7020715099
+                </a>
               </li>
-              <li className="flex items-center space-x-3 text-muted-foreground">
-                <Mail size={16} className="text-primary flex-shrink-0" />
-                <span className="text-sm">technirmaninfrastructurepvtltd@gmail.com</span>
+              <li className="flex items-start space-x-3 text-muted-foreground">
+                <Mail size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                <a
+                  href="mailto:technirmaninfrastructurepvtltd@gmail.com"
+                  className="text-sm text-foreground hover:text-primary transition-colors font-medium"
+                  style={{ wordBreak: 'break-all' }}
+                >
+                  technirmaninfrastructurepvtltd@gmail.com
+                </a>
               </li>
             </ul>
           </div>
