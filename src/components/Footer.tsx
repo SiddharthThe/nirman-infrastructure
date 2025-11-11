@@ -50,6 +50,25 @@ const Footer = () => {
               >
                 <Linkedin size={18} />
               </a>
+              <a
+                href="https://www.instagram.com/nirman_infrastructures?igsh=eHRsYTVmc3J0b2tn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-muted hover:bg-pink-100 flex items-center justify-center text-muted-foreground hover:text-pink-500 transition-all duration-300 hover:scale-110"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href="https://wa.me/917447849574"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-muted hover:bg-green-100 flex items-center justify-center text-muted-foreground hover:text-green-600 transition-all duration-300 hover:scale-110"
+                aria-label="WhatsApp"
+              >
+                {/* WhatsApp SVG icon */}
+                <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g><circle cx="16" cy="16" r="16" fill="currentColor" fillOpacity="0.12"/><path d="M16 7.5c-4.7 0-8.5 3.8-8.5 8.5 0 1.5.4 2.9 1.1 4.1l-1.2 4.4 4.5-1.2c1.2.7 2.6 1.1 4.1 1.1 4.7 0 8.5-3.8 8.5-8.5S20.7 7.5 16 7.5zm0 15.3c-1.3 0-2.6-.4-3.7-1.1l-.3-.2-2.7.7.7-2.6-.2-.3c-.7-1.1-1.1-2.4-1.1-3.7 0-4 3.2-7.2 7.2-7.2s7.2 3.2 7.2 7.2-3.2 7.2-7.2 7.2zm4-5.5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.1-.5.7-.6.8-.1.1-.2.2-.4.1-.2-.1-.8-.3-1.5-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1 0-.2 0-.3 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.3-.5-.3-.1 0-.2 0-.3 0-.1 0-.3 0-.5.2-.2.2-.7.7-.7 1.7 0 1 .7 2 1.1 2.4.1.1 1.5 2.3 3.6 3.1.5.2.9.3 1.2.4.5.1.9.1 1.2.1.4 0 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z" fill="currentColor"/></g></svg>
+              </a>
             </div>
           </div>
 

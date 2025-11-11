@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import Logo from './Logo';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Zap, Shield } from 'lucide-react';
 import { gsap } from 'gsap';
@@ -12,7 +13,7 @@ const Hero = () => {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    
+
     // Hero animation sequence
     tl.fromTo(titleRef.current,
       { y: 100, opacity: 0 },
@@ -27,22 +28,25 @@ const Hero = () => {
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
       '-=0.2'
-    )
-    .fromTo(iconsRef.current?.children,
-      { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)', stagger: 0.1 },
-      '-=0.3'
     );
 
-    // Floating animation for icons
-    gsap.to(iconsRef.current?.children, {
-      y: -10,
-      duration: 2,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1,
-      stagger: 0.2
-    });
+    if (iconsRef.current && iconsRef.current.children.length > 0) {
+      tl.fromTo(iconsRef.current.children,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)', stagger: 0.1 },
+        '-=0.3'
+      );
+
+      // Floating animation for icons
+      gsap.to(iconsRef.current.children, {
+        y: -10,
+        duration: 2,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        stagger: 0.2
+      });
+    }
 
   }, []);
 
@@ -52,11 +56,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Company Logo */}
           <div className="flex justify-center mb-8">
-            <img 
-              src="/nirman-logo-full.png" 
-              alt="Nirman Infrastructure - The skyline of Trust" 
-              className="h-20 w-auto object-contain drop-shadow-2xl"
-            />
+            {/* Logo removed for cleaner look, only in Navbar */}
           </div>
 
           {/* Main Heading */}

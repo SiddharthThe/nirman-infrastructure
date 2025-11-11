@@ -43,10 +43,10 @@ const About = () => {
   }, []);
 
   const stats = [
-    { icon: Award, value: '1000+', label: 'Completed Projects' },
-    { icon: Users, value: '7', label: 'Expert Partners' },
-    { icon: Clock, value: '19+', label: 'Years of Excellence' },
-    { icon: Target, value: '30+', label: 'Years Partner Experience' },
+  { icon: Award, value: '1000+', label: 'Completed Projects' },
+  { icon: Users, value: '7', label: 'Expert Partners' },
+  { icon: Users, value: '50+', label: 'Staff Members' },
+  { icon: Clock, value: '19+', label: 'Years of Excellence' },
   ];
 
   const values = [
@@ -69,6 +69,11 @@ const About = () => {
       title: 'Trust & Reliability',
       description: 'As a trusted name in Ratnagiri and beyond, our clients rely on us for on-time delivery and exceptional results across all sectors.',
       color: 'text-orange-500'
+    },
+    {
+      title: 'Dedicated Staff',
+      description: 'Our team of 50+ skilled staff members ensures every project is executed with professionalism, efficiency, and a commitment to client satisfaction.',
+      color: 'text-cyan-600'
     },
   ];
 
@@ -132,12 +137,18 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-gradient-to-b from-muted/40 to-white/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map(({ icon: Icon, value, label }, index) => (
-              <div key={index} className="text-center card-glow p-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div
+            ref={statsRef}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          >
+            {stats.slice(0, 4).map(({ icon: Icon, value, label }, index) => (
+              <div
+                key={index}
+                className="text-center bg-white/80 shadow-lg rounded-2xl p-8 flex flex-col items-center justify-center transition-transform hover:scale-105"
+              >
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <Icon size={28} className="text-primary" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-2">{value}</div>
@@ -160,7 +171,7 @@ const About = () => {
             </p>
           </div>
 
-          <div ref={valuesRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div ref={valuesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <div key={index} className="card-glow p-8">
                 <h3 className="text-2xl font-semibold text-foreground mb-4">

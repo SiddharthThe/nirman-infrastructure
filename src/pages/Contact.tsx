@@ -7,19 +7,27 @@ interface ContactFormData {
   name: string;
   email: string;
   phone: string;
+  address: string;
   service: string;
   message: string;
   hp: string; // honeypot field
+  flatLocation?: string;
+  flatBudget?: string;
+  flatTimeline?: string;
 }
 
 const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-    hp: '' // honeypot field - should remain empty
+  name: '',
+  email: '',
+  phone: '',
+  address: '',
+  service: '',
+  message: '',
+  hp: '', // honeypot field - should remain empty
+  flatLocation: '',
+  flatBudget: '',
+  flatTimeline: ''
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -67,24 +75,37 @@ const Contact = () => {
     if (!formData.name.trim() || formData.name.trim().length < 2) {
       errors.push('Name must be at least 2 characters long');
     }
-
     if (!formData.phone.trim() || formData.phone.trim().length < 7) {
       errors.push('Please enter a valid phone number');
     }
-
+    if (!formData.address.trim() || formData.address.trim().length < 5) {
+      errors.push('Please enter your address');
+    }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
       errors.push('Please enter a valid email address');
     }
-
     if (!formData.service.trim()) {
       errors.push('Please select a service');
     }
-
     if (!formData.message.trim() || formData.message.trim().length < 10) {
       errors.push('Message must be at least 10 characters long');
     }
-
+    // If a residential/flat/house type is selected, require extra fields
+    const residentialOptions = [
+      '1rk', '1bhk', '2bhk', '3bhk', 'row-house', 'individual-banglow'
+    ];
+    if (residentialOptions.includes(formData.service)) {
+      if (!formData.flatLocation || formData.flatLocation.trim().length < 2) {
+        errors.push('Please enter preferred location for flat enquiry');
+      }
+      if (!formData.flatBudget || formData.flatBudget.trim().length < 2) {
+        errors.push('Please enter your budget for flat enquiry');
+      }
+      if (!formData.flatTimeline || formData.flatTimeline.trim().length < 2) {
+        errors.push('Please enter your possession timeline for flat enquiry');
+      }
+    }
     return errors;
   };
 
@@ -103,10 +124,23 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const subject = encodeURIComponent('Project Inquiry from ' + formData.name);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`
-      );
+      // Pre-fill subject for flat/house enquiry
+      let subject = 'Project Inquiry from ' + formData.name;
+      const residentialOptions = [
+        '1rk', '1bhk', '2bhk', '3bhk', 'row-house', 'individual-banglow'
+      ];
+      if (residentialOptions.includes(formData.service)) {
+        subject = `Flat Enquiry: ${formData.service.toUpperCase()} from ${formData.name}`;
+      }
+      subject = encodeURIComponent(subject);
+      let body = `Name: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nService: ${formData.service}`;
+      if (residentialOptions.includes(formData.service)) {
+        body += `\nPreferred Location: ${formData.flatLocation}`;
+        body += `\nBudget: ${formData.flatBudget}`;
+        body += `\nPossession Timeline: ${formData.flatTimeline}`;
+      }
+      body += `\nMessage: ${formData.message}`;
+      body = encodeURIComponent(body);
       window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
 
       setIsSubmitted(true);
@@ -119,9 +153,13 @@ const Contact = () => {
           name: '',
           email: '',
           phone: '',
+          address: '',
           service: '',
           message: '',
-          hp: ''
+          hp: '',
+          flatLocation: '',
+          flatBudget: '',
+          flatTimeline: ''
         });
       }, 3000);
     } catch (error: any) {
@@ -161,11 +199,11 @@ const Contact = () => {
     },
     {
       icon: Phone,
-      title: "Call Us",
+  title: "Call Us",
       details: [
         {
-          label: "+91 7020715099",
-          telUrl: "tel:+917020715099"
+          label: "+91 744-7849574",
+          telUrl: "tel:+917447849574"
         }
       ],
       color: "text-green-500"
@@ -184,102 +222,82 @@ const Contact = () => {
     {
       icon: Clock,
       title: "Office Hours",
-      details: ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM"],
+  details: ["Monday to Saturday: 10:00 AM - 6:00 PM"],
       color: "text-orange-500"
     }
   ];
 
   return (
     <main className="pt-16">
-      {/* Hero Section */}
-      <section className="py-20 hero-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            Get In <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Touch</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to start your next project? Contact us today for a free consultation 
-            and discover how we can bring your vision to life.
-          </p>
-        </div>
-      </section>
 
       {/* Contact Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Contact Information */}
-            <div ref={contactInfoRef} className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">
-                  Let's Start a Conversation
-                </h2>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  We're here to help you with all your construction and infrastructure needs. 
-                  Reach out to us through any of the channels below, and our team will get back to you promptly.
-                </p>
-              </div>
-
-              {contactInfo.map(({ icon: Icon, title, details }, index) => (
-                <div key={index} className="flex items-start space-x-4 py-2">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <Icon size={18} className="text-primary" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <h3 className="font-semibold text-foreground mb-1 text-base">{title}</h3>
-                    {details.map((detail, idx) => {
-                      if (typeof detail === 'string') {
-                        return (
-                          <p key={idx} className="text-muted-foreground text-sm">{detail}</p>
-                        );
-                      } else {
-                        let href = '';
-                        let isExternal = false;
-                        if ('mapUrl' in detail) {
-                          href = detail.mapUrl;
-                          isExternal = true;
-                        } else if ('telUrl' in detail) {
-                          href = detail.telUrl;
-                        } else if ('mailUrl' in detail) {
-                          href = detail.mailUrl;
+      <section className="relative py-20 bg-gradient-to-br from-[#f8faff] via-[#eaf3ff] to-[#f8faff]">
+        <div className="max-w-5xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+          <div className="rounded-3xl shadow-2xl bg-white/95 border border-[#e3eefe] flex flex-col lg:flex-row overflow-hidden transition-shadow duration-300 hover:shadow-[0_8px_32px_0_rgba(79,156,255,0.15)] gap-0 lg:gap-0">
+            {/* Contact Info */}
+            <div ref={contactInfoRef} className="flex-1 p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-[#f8faff] to-[#eaf3ff]">
+              <h2
+                className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#4f9cff] via-[#7aa8ff] to-[#a5b4fc] bg-clip-text text-transparent mb-6 drop-shadow-sm"
+                style={{ letterSpacing: '-0.01em', lineHeight: 1.1 }}
+              >
+                Let's Start a Conversation
+              </h2>
+              <p className="text-[#64748b] mb-8 text-base md:text-lg">We're here to help you with all your construction and infrastructure needs. Reach out to us through any of the channels below, and our team will get back to you promptly.</p>
+              <div className="space-y-6">
+                {contactInfo.map(({ icon: Icon, title, details }, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <span className="w-12 h-12 flex items-center justify-center rounded-full bg-[#4f9cff]/10 text-[#4f9cff] shadow-sm">
+                      <Icon size={22} />
+                    </span>
+                    <div>
+                      <div className="font-semibold text-[#1e293b] text-base mb-0.5">{title}</div>
+                      {details.map((detail, idx) => {
+                        if (typeof detail === 'string') {
+                          return <p key={idx} className="text-[#64748b] text-sm">{detail}</p>;
+                        } else {
+                          let href = '';
+                          let isExternal = false;
+                          if ('mapUrl' in detail) {
+                            href = detail.mapUrl;
+                            isExternal = true;
+                          } else if ('telUrl' in detail) {
+                            href = detail.telUrl;
+                          } else if ('mailUrl' in detail) {
+                            href = detail.mailUrl;
+                          }
+                          return (
+                            <a
+                              key={idx}
+                              href={href}
+                              {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                              className="text-sm font-medium text-[#1e293b] hover:text-[#4f9cff] transition-colors break-all"
+                              style={{ textDecoration: 'none', marginBottom: '2px' }}
+                            >
+                              {detail.label}
+                            </a>
+                          );
                         }
-                        return (
-                          <a
-                            key={idx}
-                            href={href}
-                            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                            className="text-sm font-medium text-foreground hover:text-primary transition-colors break-all"
-                            style={{ textDecoration: 'none', marginBottom: '2px' }}
-                          >
-                            {detail.label}
-                          </a>
-                        );
-                      }
-                    })}
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-
             {/* Contact Form */}
-            <div className="card-glow p-8">
-              <h3 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h3>
-              
+            <div className="flex-1 p-8 md:p-12 bg-white flex flex-col justify-center">
+              <h3 className="text-2xl font-bold text-[#1e293b] mb-6">Send us a Message</h3>
               {isSubmitted ? (
                 <div className="text-center py-12">
                   <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-foreground mb-2">Thank You!</h4>
-                  <p className="text-muted-foreground">
-                    Your message has been sent successfully. We'll get back to you soon.
-                  </p>
+                  <h4 className="text-xl font-semibold text-[#1e293b] mb-2">Thank You!</h4>
+                  <p className="text-[#64748b]">Your message has been sent successfully. We'll get back to you soon.</p>
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={(e) => {
                   e.preventDefault();
                   const subject = encodeURIComponent('Project Inquiry from ' + formData.name);
                   const body = encodeURIComponent(
-                    `Name: ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`
+                    `Name: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nService: ${formData.service}\nMessage: ${formData.message}`
                   );
                   window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
                 }} className="space-y-6">
@@ -293,12 +311,16 @@ const Contact = () => {
                     tabIndex={-1}
                     autoComplete="off"
                   />
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Highlighted box for flat enquiry */}
+                    {['1rk','1bhk','2bhk','3bhk','row-house','individual-banglow'].includes(formData.service) && (
+                      <div className="col-span-1 md:col-span-2 bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4 rounded">
+                        <div className="font-semibold text-yellow-800 mb-1">Flat/House Enquiry</div>
+                        <div className="text-yellow-700 text-sm">Please provide additional details for your residential enquiry.</div>
+                      </div>
+                    )}
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Full Name *
-                      </label>
+                      <label className="block text-sm font-medium text-[#1e293b] mb-2">Full Name *</label>
                       <input
                         type="text"
                         name="name"
@@ -306,14 +328,12 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        placeholder="John Doe"
+                        className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        placeholder="Siddharth Vhatkar"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Phone Number *
-                      </label>
+                      <label className="block text-sm font-medium text-[#1e293b] mb-2">Phone Number *</label>
                       <input
                         type="tel"
                         name="phone"
@@ -321,15 +341,70 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
+                  {/* Conditional fields for flat enquiry */}
+                  {['1rk','1bhk','2bhk','3bhk','row-house','individual-banglow'].includes(formData.service) && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium text-[#1e293b] mb-2">Preferred Location *</label>
+                        <input
+                          type="text"
+                          name="flatLocation"
+                          value={formData.flatLocation}
+                          onChange={handleChange}
+                          required
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          placeholder="e.g. Ratnagiri, Mumbai, etc."
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#1e293b] mb-2">Budget Range *</label>
+                        <input
+                          type="text"
+                          name="flatBudget"
+                          value={formData.flatBudget}
+                          onChange={handleChange}
+                          required
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          placeholder="e.g. 30-40 Lakh, 1-2 Cr, etc."
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-[#1e293b] mb-2">Possession Timeline *</label>
+                        <input
+                          type="text"
+                          name="flatTimeline"
+                          value={formData.flatTimeline}
+                          onChange={handleChange}
+                          required
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          placeholder="e.g. Immediate, 6 months, 1 year, etc."
+                        />
+                      </div>
+                    </>
+                  )}
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
-                    </label>
+                    <label className="block text-sm font-medium text-[#1e293b] mb-2">Address *</label>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      placeholder="Your Address"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#1e293b] mb-2">Email Address *</label>
                     <input
                       type="email"
                       name="email"
@@ -337,35 +412,37 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      placeholder="siddharth@example.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Service Interested In *
-                    </label>
+                    <label className="block text-sm font-medium text-[#1e293b] mb-2">Service Interested In *</label>
                     <select
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <option value="">Select a service...</option>
-                      <option value="commercial">Commercial Construction</option>
-                      <option value="residential">Residential Development</option>
-                      <option value="flat-enquiry">Flat Enquiry</option>
-                      <option value="infrastructure">Infrastructure Solutions</option>
-                      <option value="project-management">Project Management</option>
-                      <option value="consultation">General Consultation</option>
+                      <optgroup label="Buying Commercial">
+                        <option value="shop-space">Shop Space</option>
+                        <option value="office-space">Office Space</option>
+                      </optgroup>
+                      <optgroup label="Buying Residential">
+                        <option value="1rk">1 RK</option>
+                        <option value="1bhk">1 BHK</option>
+                        <option value="2bhk">2 BHK</option>
+                        <option value="3bhk">3 BHK</option>
+                        <option value="row-house">Row House</option>
+                        <option value="individual-banglow">Individual Banglow</option>
+                      </optgroup>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Project Details *
-                    </label>
+                    <label className="block text-sm font-medium text-[#1e293b] mb-2">Project Details (location)*</label>
                     <textarea
                       name="message"
                       value={formData.message}
@@ -373,18 +450,34 @@ const Contact = () => {
                       required
                       disabled={isSubmitting}
                       rows={4}
-                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-[#f8faff] border border-[#e3eefe] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f9cff]/30 focus:border-[#4f9cff] transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Tell us about your project requirements, timeline, and any specific needs..."
                     />
+                    {(() => {
+                      const residential = ['1rk','1bhk','2bhk','3bhk','row-house','individual-banglow'];
+                      const commercial = ['shop-space','office-space'];
+                      if (residential.includes(formData.service)) {
+                        return (
+                          <div className="flex items-start gap-2 mt-2 bg-yellow-50 border border-yellow-200 rounded px-3 py-2 text-yellow-800 text-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" strokeWidth="2" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01" /></svg>
+                            <span><span className="font-semibold">Location required:</span> Please mention your preferred location in the details above for flat/house enquiries.</span>
+                          </div>
+                        );
+                      } else if (commercial.includes(formData.service)) {
+                        return (
+                          <div className="flex items-start gap-2 mt-2 bg-blue-50 border border-blue-200 rounded px-3 py-2 text-blue-800 text-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" strokeWidth="2" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01" /></svg>
+                            <span><span className="font-semibold">Location required:</span> Please mention your preferred location in the details above for commercial enquiries.</span>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                      isSubmitting 
-                        ? 'bg-muted text-muted-foreground cursor-not-allowed' 
-                        : 'btn-glow-primary hover:scale-105'
-                    }`}
+                    className={`w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r from-[#7aa8ff] to-[#4f9cff] text-white shadow-lg hover:scale-105 hover:from-[#4f9cff] hover:to-[#1e293b] focus:ring-2 focus:ring-[#4f9cff]/30 focus:outline-none ${isSubmitting ? 'opacity-60 cursor-not-allowed' : ''}`}
                   >
                     Send Message
                     <Send size={18} />
@@ -393,6 +486,19 @@ const Contact = () => {
               )}
             </div>
           </div>
+        </div>
+        {/* Google Map Embed */}
+        <div className="max-w-5xl mx-auto mt-12 rounded-2xl overflow-hidden shadow-lg border border-[#e3eefe]">
+          <iframe
+            title="Nirman Infrastructure Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.073234013839!2d73.3131221!3d16.9862727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bea0d87c6c61a49%3A0x653f9a2bc79f24c7!2sNirman%20Infrastructure%20Ratnagiri!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </section>
     </main>
