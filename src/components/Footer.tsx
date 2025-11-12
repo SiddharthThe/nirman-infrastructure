@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                 <Building2 size={24} className="text-white" />
               </div>
-              <span className="text-2xl font-bold text-foreground">Nirman Infrastructure</span>
+              <span className="text-2xl font-bold text-foreground">Technirman Infrastructure</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
               A dynamic and reliable construction company from Ratnagiri, Maharashtra, 
@@ -107,7 +107,7 @@ const Footer = () => {
                   className="text-sm text-foreground hover:text-primary transition-colors font-medium leading-snug"
                   style={{ maxWidth: '220px', display: 'inline-block', wordBreak: 'break-word' }}
                 >
-                  Nirman Infrastructure, Ratnagiri, Maharashtra 415612
+                  Technirman Infrastructure, Ratnagiri, Maharashtra 415612
                 </a>
               </li>
               <li className="flex items-start space-x-3 text-muted-foreground">
@@ -138,7 +138,7 @@ const Footer = () => {
         <div className="border-t border-border mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Nirman Infrastructure Pvt. Ltd. All rights reserved.
+              © {currentYear} Technirman Infrastructure Pvt. Ltd. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
