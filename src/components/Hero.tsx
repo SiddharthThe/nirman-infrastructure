@@ -73,7 +73,7 @@ const Hero = () => {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Nirman Infrastructure delivers world-class construction and infrastructure solutions 
+            Technirman Infrastructure delivers world-class construction and infrastructure solutions
             with cutting-edge technology and unmatched expertise.
           </p>
 

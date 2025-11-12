@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Mukta:wght@400;700&family=Baloo+2:wght@400;700&display=swap');
+
+/* Devanagari readability improvements */
+.font-marathi {
+  font-family: 'Noto Sans Devanagari', 'Mukta', 'Baloo 2', sans-serif;
+  line-height: 1.9;
+  letter-spacing: 0.3px;
+  font-size: 1.06rem;
+  word-break: break-word;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Nirman Infrastructure Design System - Light theme with glowing accents */
+/* Technirman Infrastructure Design System - Light theme with glowing accents */
 
 @layer base {
   :root {

@@ -13,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({ height = 56, className = "", variant = 'dar
   return (
     <img
       src={src}
-      alt="Nirman Infrastructure - The skyline of Trust"
+  alt="Technirman Infrastructure - The skyline of Trust"
       style={{ height, width: "auto", display: "block", objectFit: 'contain' }}
       className={className}
       draggable={false}

@@ -88,13 +88,18 @@ const Contact = () => {
     if (!formData.service.trim()) {
       errors.push('Please select a service');
     }
-    if (!formData.message.trim() || formData.message.trim().length < 10) {
-      errors.push('Message must be at least 10 characters long');
-    }
     // If a residential/flat/house type is selected, require extra fields
     const residentialOptions = [
       '1rk', '1bhk', '2bhk', '3bhk', 'row-house', 'individual-banglow'
     ];
+    const isResidential = residentialOptions.includes(formData.service);
+
+    // Relax message requirement for residential enquiries
+    if (!isResidential) {
+      if (!formData.message.trim() || formData.message.trim().length < 4) {
+        errors.push('Message must be at least 4 characters long');
+      }
+    }
     if (residentialOptions.includes(formData.service)) {
       if (!formData.flatLocation || formData.flatLocation.trim().length < 2) {
         errors.push('Please enter preferred location for flat enquiry');
@@ -133,7 +138,7 @@ const Contact = () => {
         subject = `Flat Enquiry: ${formData.service.toUpperCase()} from ${formData.name}`;
       }
       subject = encodeURIComponent(subject);
-      let body = `Name: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nService: ${formData.service}`;
+  let body = `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nAddress: ${formData.address}\nService: ${formData.service}`;
       if (residentialOptions.includes(formData.service)) {
         body += `\nPreferred Location: ${formData.flatLocation}`;
         body += `\nBudget: ${formData.flatBudget}`;
@@ -141,7 +146,7 @@ const Contact = () => {
       }
       body += `\nMessage: ${formData.message}`;
       body = encodeURIComponent(body);
-      window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:nirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
 
       setIsSubmitted(true);
       toast.success('Thank you! Your message has been sent successfully.');
@@ -214,7 +219,7 @@ const Contact = () => {
       details: [
         {
           label: "technirmaninfrastructurepvtltd@gmail.com",
-          mailUrl: "mailto:technirmaninfrastructurepvtltd@gmail.com"
+          mailUrl: "mailto:nirmaninfrastructurepvtltd@gmail.com"
         }
       ],
       color: "text-purple-500"
@@ -293,14 +298,7 @@ const Contact = () => {
                   <p className="text-[#64748b]">Your message has been sent successfully. We'll get back to you soon.</p>
                 </div>
               ) : (
-                <form ref={formRef} onSubmit={(e) => {
-                  e.preventDefault();
-                  const subject = encodeURIComponent('Project Inquiry from ' + formData.name);
-                  const body = encodeURIComponent(
-                    `Name: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nService: ${formData.service}\nMessage: ${formData.message}`
-                  );
-                  window.location.href = `mailto:technirmaninfrastructurepvtltd@gmail.com?subject=${subject}&body=${body}`;
-                }} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   {/* Honeypot field - hidden from users */}
                   <input
                     type="text"

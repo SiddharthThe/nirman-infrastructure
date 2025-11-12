@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Award, Users, Clock, Target } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import aboutImg from '../assets/about-img.png';
+import aboutImg from '../assets/about-img.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,34 +12,40 @@ const About = () => {
 
   useEffect(() => {
     // Animate stats on scroll
-    gsap.fromTo(statsRef.current?.children,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: 'top 80%',
+    if (statsRef.current) {
+      gsap.fromTo(
+        statsRef.current.children,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: 'top 80%',
+          }
         }
-      }
-    );
+      );
+    }
 
     // Animate values cards
-    gsap.fromTo(valuesRef.current?.children,
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: valuesRef.current,
-          start: 'top 80%',
+    if (valuesRef.current) {
+      gsap.fromTo(
+        valuesRef.current.children,
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: valuesRef.current,
+            start: 'top 80%',
+          }
         }
-      }
-    );
+      );
+    }
   }, []);
 
   const stats = [
@@ -83,7 +89,7 @@ const About = () => {
       <section className="py-20 hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            About <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Technirman Infrastructure</span>
+            About <span className="text-glow bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Nirman Infrastructure</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             From the Konkan region of Maharashtra, Ratnagiri - A dynamic and reliable construction company 
@@ -115,7 +121,7 @@ const About = () => {
                 <p>
                   Established in 2006, we have been working in Ratnagiri and are engaged in Residential projects, 
                   Public sector projects, construction management, cost analysis, and all types of surveying & 
-                  valuation works. In 2011, Nirman Infrastructures evolved into Technirman Infrastructure Pvt. Ltd., 
+                     valuation works. In 2011, Technirman Infrastructure evolved into Technirman Infrastructure Pvt. Ltd., 
                   marking a new chapter in our journey towards excellence in infrastructure development.
                 </p>
                 <p>
@@ -128,7 +134,8 @@ const About = () => {
             <div className="aspect-square bg-muted rounded-xl overflow-hidden">
               <img 
                 src={aboutImg} 
-                alt="Technirman Infrastructure Office - Ratnagiri"
+                alt="Law College project by Nirman Infrastructure"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>

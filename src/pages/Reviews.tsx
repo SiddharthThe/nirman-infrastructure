@@ -1,159 +1,122 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { parseReviews, Review } from '../lib/parseReviews';
+// import { parseReviews, Review } from '../lib/parseReviews';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useFadeInOnView } from '../hooks/useFadeInOnView';
 // ReviewCard component to render each review safely with hooks
-const ReviewCard = ({ review, idx, expanded, setExpanded, MAX_LENGTH, avatarGradient }) => {
-  const marathi = /[\u0900-\u097F]/.test(review.content);
-  const isLong = review.content.length > MAX_LENGTH;
-  const showAll = expanded[idx];
-  const displayText = isLong && !showAll ? review.content.slice(0, MAX_LENGTH) + '...' : review.content;
-  const lang = marathi ? 'mr' : 'en';
-  const isFeatured = idx === 0 || idx === 1;
-  const offset = (idx % 3 === 1) ? 'md:translate-y-8' : '';
-  const [ref, visible] = useFadeInOnView();
-  // Helper to get initials for avatar
-  function getInitials(name) {
-    return name
-      .split(' ')
-      .map((n) => n[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase();
-  }
+const ReviewCard = ({ review, expanded, onToggle }: { review: any; expanded: boolean; onToggle: () => void }) => {
+  const marathi = /[\u0900-\u097F]/.test(review.review);
+  const maxLength = 250;
+  
+  // Check if the review text is longer than the max length
+  const isLong = review.review && review.review.length > maxLength;
+  
+  // Display text based on expanded state
+  const displayText = expanded || !isLong 
+    ? review.review 
+    : review.review.slice(0, maxLength) + '...';
+  
+  // Handle button click
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onToggle();
+  };
+
   return (
-    <div
-      key={idx}
-      ref={ref}
-      className={`relative card-glow px-8 py-8 flex flex-col gap-4 transition-all duration-300 ${marathi ? 'font-sans' : ''} ${isFeatured ? 'ring-2 ring-[hsl(var(--primary))] bg-[hsl(var(--card)/0.98)] scale-[1.04] z-10 shadow-xl' : ''} ${offset} ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-      style={{ transition: 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)' }}
-    >
-      <div className="flex items-center gap-3 mb-1">
-        <div className={`w-12 h-12 rounded-full ${avatarGradient} flex items-center justify-center text-white text-xl font-bold shadow-md`}>
-          {getInitials(review.author)}
+  <div className={`bg-white dark:bg-neutral-900 border border-blue-100 dark:border-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 md:p-7 flex flex-col gap-4 font-sans ${marathi ? 'font-marathi' : ''}`}>
+      <div className="flex items-center mb-3">
+  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-300 flex items-center justify-center mr-4 shadow-sm ring-1 ring-blue-200">
+          {/* Slightly dark, modern person icon */}
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="url(#person-gradient)" />
+            <defs>
+              <linearGradient id="person-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#2563eb" />
+                <stop offset="1" stopColor="#60a5fa" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="13" r="5" fill="#f1f5f9" fillOpacity="0.95" />
+            <ellipse cx="16" cy="23" rx="7" ry="4" fill="#e0e7ef" fillOpacity="0.8" />
+          </svg>
         </div>
         <div className="flex flex-col">
-          <span className="font-bold text-[hsl(var(--foreground))] text-base leading-tight">{review.author}</span>
-          <span className="text-xs text-[hsl(var(--muted-foreground))] font-medium mt-0.5">{review.date}</span>
+          <span className="font-semibold text-base md:text-lg text-gray-900 dark:text-white leading-tight">{review.name}</span>
+          <span className="text-[11px] md:text-xs text-gray-500 dark:text-gray-400 mt-0.5 flex items-center gap-2">
+            {review.date ? new Date(review.date).toLocaleDateString() : ''}
+            {marathi && (
+              <span className="ml-2 px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">मराठी</span>
+            )}
+            {!marathi && (
+              <span className="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">EN</span>
+            )}
+          </span>
         </div>
-        {/* Language indicator */}
-        <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] border border-[hsl(var(--border))] font-semibold uppercase tracking-wider">{lang === 'mr' ? 'मराठी' : 'EN'}</span>
       </div>
-  );
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .font-marathi {
-          font-family: 'Noto Sans Devanagari', 'Mukta', 'Baloo 2', 'sans-serif';
-          font-size: 1.08rem;
-        }
-      `}</style>
-      <blockquote className={`text-[1.13rem] text-[hsl(var(--foreground))] whitespace-pre-line leading-relaxed ${marathi ? 'font-marathi' : ''}`}>{displayText}</blockquote>
-      {isLong && (
-        <button
-          className="mt-1 text-sm text-[hsl(var(--primary))] font-semibold inline-flex items-center gap-1 hover:underline hover:text-[hsl(var(--secondary))] transition-colors self-end"
-          style={{padding: 0, background: 'none'}}
-          onClick={() => setExpanded(e => ({ ...e, [idx]: !showAll }))}
-        >
-          {showAll ? 'View Less' : 'View More'}
-          <ArrowRightIcon className={`w-4 h-4 transition-transform ${showAll ? 'rotate-180' : ''}`} />
-        </button>
-      )}
-    </div>
-  );
-};
-
-const Reviews = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch('/Reviews-data.json')
-      .then(res => res.text())
-      .then(raw => {
-        setReviews(parseReviews(raw));
-        setLoading(false);
-      })
-      .catch(err => {
-        setError('Failed to load reviews.');
-        setLoading(false);
-      });
-  }, []);
-
-  // For 'View More' toggle
-  const [expanded, setExpanded] = useState<{[key:number]: boolean}>({});
-  const MAX_LENGTH = 260;
-
-  // Helper to get initials for avatar
-  function getInitials(name: string) {
-    return name
-      .split(' ')
-      .map((n) => n[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase();
-  }
-
-  // Brand blue avatar gradient
-  const avatarGradient = 'bg-gradient-to-br from-[#4f9cff] to-[#7aa8ff]';
-
-  return (
-    <main className="pt-16 pb-20 min-h-screen relative bg-[hsl(var(--background))] overflow-x-clip">
-      {/* Brand watermark/gradient background */}
-      <div className="pointer-events-none select-none absolute inset-0 z-0 opacity-80" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[120vw] h-[60vh] rounded-full bg-gradient-to-br from-[#eaf3ff] via-[#f8faff] to-[#dbeafe] blur-2xl" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/3 bg-gradient-to-tr from-[#4f9cff22] to-transparent" />
-      </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center mb-10">
-          <span className="px-3 py-1 rounded-full bg-[hsl(var(--card))] border border-[hsl(var(--border))] text-xs font-medium text-[hsl(var(--primary))] mb-3 tracking-wide">Testimonials</span>
-          <h1 className="text-4xl font-extrabold text-[hsl(var(--foreground))] mb-2 text-center tracking-tight">Client Reviews</h1>
-          <p className="text-center text-lg text-[hsl(var(--muted-foreground))] max-w-2xl leading-relaxed">Find out how our clients are spreading the word! We value every testimonial and strive to deliver excellence in every project.</p>
-        </div>
-        {loading ? (
-          <div className="text-center text-lg text-gray-500 animate-pulse">Loading reviews...</div>
-        ) : error ? (
-          <div className="text-center text-red-500">{error}</div>
-        ) : (
-          Array.isArray(reviews) && reviews.length > 0 ? (
-            <>
-              {/* Responsive offset grid with featured cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8">
-                {reviews.map((review, idx) => (
-                  <ReviewCard
-                    key={idx}
-                    review={review}
-                    idx={idx}
-                    expanded={expanded}
-                    setExpanded={setExpanded}
-                    MAX_LENGTH={MAX_LENGTH}
-                    avatarGradient={avatarGradient}
-                  />
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="text-center text-gray-500 py-12">No reviews found.</div>
-          )
+      
+      <div className="flex flex-col">
+        <p className="text-gray-800 dark:text-gray-100 whitespace-pre-line text-[15px] leading-7">
+          {displayText}
+        </p>
+        
+        {isLong && (
+          <button
+            type="button"
+            onClick={handleToggle}
+            className="self-start mt-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm flex items-center gap-1 transition-colors duration-200 cursor-pointer bg-transparent border-none relative z-10 pointer-events-auto"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            {expanded ? (
+              <>
+                Show Less <span className="text-xs">↑</span>
+              </>
+            ) : (
+              <>
+                View More <span className="text-xs">→</span>
+              </>
+            )}
+          </button>
         )}
       </div>
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .font-marathi {
-          font-family: 'Noto Sans Devanagari', 'Mukta', 'Baloo 2', 'sans-serif';
-          font-size: 1.08rem;
-        }
-      `}</style>
-    </main>
+    </div>
   );
-};
+}
 
-export default Reviews;
+
+export default function Reviews() {
+  const [reviews, setReviews] = React.useState<any[]>([]);
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
+  React.useEffect(() => {
+    fetch('/Reviews-data.json')
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((err) => setReviews([]));
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-neutral-900">
+      {/* Gradient header section - match site hero/section style */}
+      <div className="w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100 via-white to-purple-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900 pt-24 pb-16 px-2 md:px-0 flex flex-col items-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 tracking-tight drop-shadow-lg">
+          <span className="text-black dark:text-white">Our </span>
+          <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">Client Reviews</span>
+        </h1>
+        <p className="text-lg md:text-xl text-center mb-2 text-gray-600 dark:text-gray-300 max-w-2xl">Find out how our clients are spreading the word! We value every testimonial and strive to deliver excellence in every project.</p>
+      </div>
+      {/* Reviews grid section */}
+      <div className="max-w-6xl mx-auto w-full px-2 md:px-0 -mt-14 pb-20">
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review, idx) => (
+            <ReviewCard
+              key={idx}
+              review={review}
+              expanded={expandedIndex === idx}
+              onToggle={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -28,19 +28,19 @@ const Navbar = () => {
   return (
     <nav className="navbar fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <Logo height={80} className="transition-transform duration-200 hover:scale-105" variant="dark" />
+            <Logo height={90} className="transition-transform duration-200 hover:scale-105" variant="dark" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 ml-8">
+          <div className="hidden md:flex items-center space-x-10 ml-10">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-link font-medium text-sm ${
+                className={`nav-link font-semibold text-base ${
                   location.pathname === item.path 
                     ? 'text-primary active' 
                     : 'text-muted-foreground hover:text-foreground'
@@ -57,7 +57,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>

@@ -123,11 +123,11 @@ const Footer = () => {
               <li className="flex items-start space-x-3 text-muted-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0 mt-0.5" />
                 <a
-                  href="mailto:technirmaninfrastructurepvtltd@gmail.com"
+                  href="mailto:nirmaninfrastructurepvtltd@gmail.com"
                   className="text-sm text-foreground hover:text-primary transition-colors font-medium"
                   style={{ wordBreak: 'break-all' }}
                 >
-                  technirmaninfrastructurepvtltd@gmail.com
+                  nirmaninfrastructurepvtltd@gmail.com
                 </a>
               </li>
             </ul>
@@ -138,7 +138,7 @@ const Footer = () => {
         <div className="border-t border-border mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Technirman Infrastructure Pvt. Ltd. All rights reserved.
+              © {currentYear} Nirman Infrastructure Pvt. Ltd. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
