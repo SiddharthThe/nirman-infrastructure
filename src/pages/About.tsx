@@ -49,7 +49,7 @@ const About = () => {
   }, []);
 
   const stats = [
-  { icon: Award, value: '1000+', label: 'Completed Projects' },
+  { icon: Award, value: '10+', label: 'Completed Projects' },
   { icon: Users, value: '7', label: 'Expert Partners' },
   { icon: Users, value: '50+', label: 'Staff Members' },
   { icon: Clock, value: '19+', label: 'Years of Excellence' },
@@ -119,7 +119,7 @@ const About = () => {
                   extensive experience for cost-efficient & quality output.
                 </p>
                 <p>
-                  Established in 2006, we have been working in Ratnagiri and are engaged in Residential projects, 
+                  Established in 2008, we have been working in Ratnagiri and are engaged in Residential projects, 
                   Public sector projects, construction management, cost analysis, and all types of surveying & 
                      valuation works. In 2011, Technirman Infrastructure evolved into Technirman Infrastructure Pvt. Ltd., 
                   marking a new chapter in our journey towards excellence in infrastructure development.

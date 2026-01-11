@@ -16,76 +16,213 @@ const Projects = () => {
 
   // Project data with actual images
   const projects = [
+    // Government Projects
     {
       id: 1,
-      title: "Guest House Ratnagiri",
-      category: "completed" as const,
-      image: "/assets/project-img/guest-house-ratnagiri.jpg",
-      description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design.",
-      location: "Ratnagiri, Maharashtra",
-      year: "2023"
+      title: "Panvel Dam",
+      category: "government" as const,
+      image: "/assets/project-img/panval-dam.jpg",
+      description: "Major water management infrastructure project for irrigation and water conservation.",
+      location: "Panvel, Ratnagiri District",
+      year: "2022"
     },
     {
       id: 2,
-      title: "Mandvi Jetty - Coastal Infrastructure",
-      category: "completed" as const,
-      image: "/assets/project-img/mandvi-jetty.jpg",
-      description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism.",
-      location: "Mandvi, Ratnagiri",
-      year: "2022"
+      title: "Asode Dam",
+      category: "government" as const,
+      image: "/assets/project-img/asode-dam.jpg",
+      description: "River dam infrastructure project for irrigation, flood control, and water resource management.",
+      location: "Asode, Maharashtra",
+      year: "2023"
     },
     {
       id: 3,
-      title: "MBRS Ratnagiri",
-      category: "completed" as const,
-      image: "/assets/project-img/mbrs-ratnagiri.jpg",
-      description: "Multi-story building project with modern architecture located in the scenic coastal region of Ratnagiri.",
-      location: "Ratnagiri, Maharashtra",
-      year: "2023"
+      title: "Shil Dam",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Water infrastructure project for regional irrigation and flood management.",
+      location: "Ratnagiri District",
+      year: "2022"
     },
     {
       id: 4,
-      title: "Panval Dam",
-      category: "completed" as const,
-      image: "/assets/project-img/panval-dam.jpg",
-      description: "Major water management infrastructure project featuring check dam construction for irrigation and water conservation.",
-      location: "Panval, Ratnagiri District",
-      year: "2022"
-    },
-    {
-      id: 5,
-      title: "Police Station Nate",
-      category: "completed" as const,
-      image: "/assets/project-img/police-station-nate.jpg",
-      description: "Government institutional building with solar power integration, modern facilities, and community-focused design.",
-      location: "Nate, Ratnagiri",
-      year: "2023"
-    },
-    {
-      id: 6,
-      title: "Tilak Smarak Ratnagiri",
-      category: "completed" as const,
-      image: "/assets/project-img/tilak-smarak-ratnagiri.jpg",
-      description: "Heritage memorial building featuring traditional architecture with modern restoration and preservation techniques.",
-      location: "Ratnagiri",
-      year: "2022"
-    },
-    {
-      id: 7,
-      title: "Ambedkar Bhavan",
-      category: "completed" as const,
-      image: "/assets/project-img/ambedkar-bhavan.jpg",
-      description: "Large-scale public institutional building featuring distinctive architecture and modern community facilities.",
+      title: "Degree College",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Educational institution building with modern facilities and infrastructure.",
       location: "Ratnagiri District",
       year: "2021"
     },
     {
+      id: 5,
+      title: "Tarangan",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Government institutional building project.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2022"
+    },
+    {
+      id: 6,
+      title: "Panchayat Samiti",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Local government administrative building with modern amenities.",
+      location: "Ratnagiri District",
+      year: "2021"
+    },
+    {
+      id: 7,
+      title: "ST Stand",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "State Transport bus stand facility with passenger amenities.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2022"
+    },
+    {
       id: 8,
-      title: "Asode Dam",
-      category: "completed" as const,
-      image: "/assets/project-img/asode-dam.jpg",
-      description: "Major river dam infrastructure project for irrigation, flood control, and water resource management in the Konkan region.",
-      location: "Asode, Maharashtra",
+      title: "MIDC Guest House",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Maharashtra Industrial Development Corporation guest house facility.",
+      location: "MIDC Ratnagiri",
+      year: "2023"
+    },
+    {
+      id: 9,
+      title: "D P D C Hall",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "District Planning and Development Council hall and office complex.",
+      location: "Ratnagiri District",
+      year: "2022"
+    },
+    {
+      id: 10,
+      title: "MBRS Building",
+      category: "government" as const,
+      image: "/assets/project-img/mbrs-ratnagiri.jpg",
+      description: "Multi-story government building with modern architecture.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2023"
+    },
+    {
+      id: 11,
+      title: "Tilak Janmabhumi",
+      category: "government" as const,
+      image: "/assets/project-img/tilak-smarak-ratnagiri.jpg",
+      description: "Heritage memorial building featuring traditional architecture with modern restoration.",
+      location: "Ratnagiri",
+      year: "2022"
+    },
+    {
+      id: 12,
+      title: "Rural Hospital Devrukh",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Healthcare facility serving rural communities with modern medical infrastructure.",
+      location: "Devrukh, Ratnagiri",
+      year: "2023"
+    },
+    {
+      id: 13,
+      title: "Class III Quarters At Kudal MIDC Area",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Residential quarters for government employees at MIDC industrial area.",
+      location: "Kudal MIDC, Sindhudurg",
+      year: "2022"
+    },
+    {
+      id: 14,
+      title: "Coastal Police Station at Purnagad",
+      category: "government" as const,
+      image: "/assets/project-img/police-station-nate.jpg",
+      description: "Coastal security police station with modern facilities.",
+      location: "Purnagad, Ratnagiri",
+      year: "2023"
+    },
+    {
+      id: 15,
+      title: "Ambedkar Bhavan",
+      category: "government" as const,
+      image: "/assets/project-img/ambedkar-bhavan.jpg",
+      description: "Large-scale public institutional building with distinctive architecture.",
+      location: "Ratnagiri District",
+      year: "2021"
+    },
+    {
+      id: 16,
+      title: "Fire Station Office Building and Staff Quarters at Fire Station MIDC Ratnagiri",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Fire station office and residential quarters for fire safety personnel.",
+      location: "MIDC Ratnagiri",
+      year: "2023"
+    },
+    {
+      id: 17,
+      title: "RDCC Bank, Ratnagiri",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Ratnagiri District Central Co-operative Bank building.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2022"
+    },
+    {
+      id: 18,
+      title: "Prathamik Shikshak Patpedhi, Ratnagiri",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Primary Teachers Credit Society office building.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2022"
+    },
+    {
+      id: 19,
+      title: "Mandvi",
+      category: "government" as const,
+      image: "/assets/project-img/mandvi-jetty.jpg",
+      description: "Coastal pier infrastructure extending into the Arabian Sea.",
+      location: "Mandvi, Ratnagiri",
+      year: "2022"
+    },
+    {
+      id: 20,
+      title: "Savarkar Natyagruh",
+      category: "government" as const,
+      image: "/placeholder.svg",
+      description: "Cultural auditorium and theatre facility for public performances.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2023"
+    },
+    // Private Projects
+    {
+      id: 21,
+      title: "Nirman Shrushti",
+      category: "private" as const,
+      image: "/placeholder.svg",
+      description: "Premium residential development with modern amenities and sustainable design.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2023"
+    },
+    {
+      id: 22,
+      title: "Indradhanu",
+      category: "private" as const,
+      image: "/placeholder.svg",
+      description: "Commercial complex with contemporary architecture and facilities.",
+      location: "Ratnagiri, Maharashtra",
+      year: "2022"
+    },
+    {
+      id: 23,
+      title: "Nalawade Sankul",
+      category: "private" as const,
+      image: "/placeholder.svg",
+      description: "Private residential complex with modern infrastructure.",
+      location: "Ratnagiri, Maharashtra",
       year: "2023"
     }
   ];

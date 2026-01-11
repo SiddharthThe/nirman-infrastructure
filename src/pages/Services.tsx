@@ -169,10 +169,10 @@ const Services = () => {
               Let's discuss how we can bring your vision to life with our expertise and dedication.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="btn-glow-primary">
+              <a href="https://wa.me/917447849574" target="_blank" rel="noopener noreferrer" className="btn-glow-primary">
                 Get Free Consultation
               </a>
-              <a href="/projects" className="btn-glow-secondary">
+              <a href="/Nirman-Infrastructure-portfolio.pdf" target="_blank" rel="noopener noreferrer" className="btn-glow-secondary">
                 View Our Portfolio
               </a>
             </div>

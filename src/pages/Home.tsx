@@ -14,7 +14,7 @@ const Home = () => {
               <div className="text-muted-foreground">Projects Completed</div>
             </div>
             <div className="space-y-4">
-              <div className="text-4xl font-bold text-secondary">15+</div>
+              <div className="text-4xl font-bold text-secondary">18+</div>
               <div className="text-muted-foreground">Years Experience</div>
             </div>
             <div className="space-y-4">

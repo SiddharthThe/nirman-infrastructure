@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 interface Project {
   id: number;
   title: string;
-  category: 'completed' | 'ongoing';
+  category: 'private' | 'government';
   image: string;
   description: string;
   location: string;
@@ -17,7 +17,7 @@ interface GalleryProps {
 }
 
 const Gallery = ({ projects }: GalleryProps) => {
-  const [filter, setFilter] = useState<'all' | 'completed'>('all');
+  const [filter, setFilter] = useState<'all' | 'private' | 'government'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -58,7 +58,7 @@ const Gallery = ({ projects }: GalleryProps) => {
     <div className="space-y-8">
       {/* Filter Buttons */}
       <div className="flex justify-center gap-4">
-        {['all', 'completed'].map((filterOption) => (
+        {['all', 'private', 'government'].map((filterOption) => (
           <button
             key={filterOption}
             onClick={() => setFilter(filterOption as any)}
