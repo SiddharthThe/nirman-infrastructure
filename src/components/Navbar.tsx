@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <Logo height={90} className="transition-transform duration-200 hover:scale-105" variant="dark" />
+            <Logo height={130} className="transition-transform duration-200 hover:scale-105" variant="dark" />
           </Link>
 
           {/* Desktop Navigation */}
