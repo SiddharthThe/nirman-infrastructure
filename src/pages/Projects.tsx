@@ -202,8 +202,8 @@ const Projects = () => {
       id: 21,
       title: "Nirman Shrushti",
       category: "private" as const,
-      image: "/placeholder.svg",
-      description: "Premium residential development with modern amenities and sustainable design.",
+      image: "public\\assets\\project-img\\Nirman-Srushti.png",
+      description: "A perfect blend of modern architecture and serene living, Nirman Srushti offers thoughtfully designed apartments with ample natural light and ventilation. We take pride in delivering superior construction quality and a premium lifestyle for every family",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
     },
@@ -211,8 +211,8 @@ const Projects = () => {
       id: 22,
       title: "Indradhanu",
       category: "private" as const,
-      image: "/placeholder.svg",
-      description: "Commercial complex with contemporary architecture and facilities.",
+      image: "public\\assets\\project-img\\Indradhanu.png",
+      description: "Indradhanu is a premier mixed-use development featuring a sophisticated blend of commercial spaces and modern residential units. Designed with a sleek, contemporary facade and expansive glass frontage, it offers a vibrant environment for businesses to grow and families to thrive.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
     },
@@ -220,7 +220,7 @@ const Projects = () => {
       id: 23,
       title: "Nalawade Sankul",
       category: "private" as const,
-      image: "/placeholder.svg",
+      image: "public\\assets\\project-img\\Nalawade-Sankul.png",
       description: "Private residential complex with modern infrastructure.",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
