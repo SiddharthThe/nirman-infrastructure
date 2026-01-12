@@ -37,31 +37,49 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Guest House Ratnagiri",
-                category: "Residential",
-                image: "/assets/project-img/guest-house-ratnagiri.jpg",
-                description: "Completed in 2023, this modern guest house in Ratnagiri is designed to provide a premium hospitality experience. The project features contemporary architecture with a clean, minimalist aesthetic, offering a perfect balance of comfort and elegance for visitors. Built with high-quality materials and a focus on ventilation and natural light, it stands as a testament to our ability to deliver stylish and functional commercial living spaces."
+                title: "Degree College",
+                category: "Educational",
+                image: "/assets/project-img/degree-clg.png",
+                description: "A significant educational landmark showcasing our expertise in large-scale institutional architecture. The building features a modern, multi-story design with a robust structural framework, incorporating expansive academic wings and an inviting entrance plaza. Designed to foster a superior learning environment for the next generation."
               },
               {
-                title: "Mandvi Jetty - Coastal Infrastructure",
-                category: "Infrastructure",
-                image: "/assets/project-img/mandvi-jetty.jpg",
-                description: "The Mandvi Jetty project highlights our specialized expertise in marine and coastal engineering. Designed to withstand harsh maritime environments, this infrastructure provides vital coastal connectivity and support for local maritime activities. The project showcases our capability in executing durable, large-scale civil works that meet stringent safety and environmental standards in challenging geographical locations."
+                title: "Nirman Shrushti",
+                category: "Residential - Flats Ready to Sell",
+                image: "/assets/project-img/Nirman-Srushti.png",
+                description: "A perfect blend of modern architecture and serene living. Nirman Srushti offers thoughtfully designed apartments with ample natural light and ventilation. We take pride in delivering superior construction quality and a premium lifestyle for every family. Flats are ready to sell - your dream home awaits!",
+                highlight: true
+              },
+              {
+                title: "Nalawade Sankul",
+                category: "Residential",
+                image: "/assets/project-img/Nalawade-Sankul.png",
+                description: "Premium private residential complex featuring modern infrastructure and contemporary design. Built with attention to detail and quality craftsmanship, offering comfortable living spaces in the heart of Ratnagiri."
               }
             ].map((project, index) => (
-              <div key={index} className="card-glow p-6">
-                <div className="aspect-video bg-muted rounded-lg overflow-hidden mb-4">
+              <div key={index} className="card-glow p-6 relative">
+                {project.highlight && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-1.5 text-sm font-semibold text-foreground shadow-sm backdrop-blur">
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                      Flats Ready
+                    </span>
+                  </div>
+                )}
+                <div className="aspect-video bg-muted rounded-xl overflow-hidden mb-4 border border-border">
                   <img 
                     src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="space-y-2">
-                  <div className="text-sm text-primary font-medium">{project.category}</div>
+                  <div className="text-sm font-medium text-primary">
+                    {project.category}
+                  </div>
                   <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
                   <p className="text-muted-foreground text-sm">{project.description}</p>
                 </div>
