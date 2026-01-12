@@ -66,8 +66,8 @@ const Projects = () => {
       id: 6,
       title: "Panchayat Samiti",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Local government administrative building with modern amenities.",
+      image: "/assets/project-img/Panchayat-Samiti.png",
+      description: "The Panchayat Samiti project is a testament to our expertise in constructing functional and dignified public administrative buildings. Featuring a modern facade with robust brick-finish textures, the structure is designed to facilitate efficient governance while providing a welcoming environment for the community.",
       location: "Ratnagiri District",
       year: "2021"
     },
@@ -93,8 +93,8 @@ const Projects = () => {
       id: 9,
       title: "D P D C Hall",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "District Planning and Development Council hall and office complex.",
+      image: "/assets/project-img/D.P.D.C.png",
+      description: "This high-profile project for the District Planning Development Committee (D.P.D.C.) in Ratnagiri showcases our expertise in premium interior execution. The hall features state-of-the-art acoustic paneling, professional wood finishes, and a functional executive layout designed to host prestigious government conferences and administrative meetings.",
       location: "Ratnagiri District",
       year: "2022"
     },
@@ -129,7 +129,7 @@ const Projects = () => {
       id: 13,
       title: "Class III Quarters At Kudal MIDC Area",
       category: "government" as const,
-      image: "/placeholder.svg",
+      image: "/assets/project-img/Class-III-Quarters.png",
       description: "Residential quarters for government employees at MIDC industrial area.",
       location: "Kudal MIDC, Sindhudurg",
       year: "2022"
@@ -156,8 +156,8 @@ const Projects = () => {
       id: 16,
       title: "Fire Station Office Building and Staff Quarters at Fire Station MIDC Ratnagiri",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Fire station office and residential quarters for fire safety personnel.",
+      image: "/assets/project-img/Fire-Station-Office-Building-and-Staff-Quarters.png",
+      description: "A specialized infrastructure project designed for industrial safety and robust residential needs. This complex features a modern Fire Station Office Building integrated with well-planned Staff Quarters, ensuring operational efficiency and high-quality living standards for essential service personnel.",
       location: "MIDC Ratnagiri",
       year: "2023"
     },
@@ -174,8 +174,8 @@ const Projects = () => {
       id: 18,
       title: "Prathamik Shikshak Patpedhi, Ratnagiri",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Primary Teachers Credit Society office building.",
+      image: "/assets/project-img/Panchayat-Samiti.png",
+      description: "The Prathamik Shikshak Patpedhi building in Ratnagiri is a prime example of our commercial construction capabilities. This multi-story institutional structure features a modern glass facade for natural lighting, sleek architectural lines, and a professional aesthetic designed to serve the cooperative banking and administrative needs of the teaching community.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
     },
@@ -202,7 +202,7 @@ const Projects = () => {
       id: 21,
       title: "Nirman Shrushti",
       category: "private" as const,
-      image: "public\\assets\\project-img\\Nirman-Srushti.png",
+      image: "/assets/project-img/Nirman-Srushti.png",
       description: "A perfect blend of modern architecture and serene living, Nirman Srushti offers thoughtfully designed apartments with ample natural light and ventilation. We take pride in delivering superior construction quality and a premium lifestyle for every family",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
@@ -211,7 +211,7 @@ const Projects = () => {
       id: 22,
       title: "Indradhanu",
       category: "private" as const,
-      image: "public\\assets\\project-img\\Indradhanu.png",
+      image: "/assets/project-img/Indradhanu.png",
       description: "Indradhanu is a premier mixed-use development featuring a sophisticated blend of commercial spaces and modern residential units. Designed with a sleek, contemporary facade and expansive glass frontage, it offers a vibrant environment for businesses to grow and families to thrive.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
@@ -220,8 +220,8 @@ const Projects = () => {
       id: 23,
       title: "Nalawade Sankul",
       category: "private" as const,
-      image: "public\\assets\\project-img\\Nalawade-Sankul.png",
-      description: "Private residential complex with modern infrastructure.",
+      image: "/assets/project-img/Nalawade-Sankul.png",
+      description: " A Perfect Blend of Modernity and Comfort \"Nalawade Sankul represents our commitment to architectural excellence and superior construction quality. Designed with a focus on modern aesthetics and spacious living, this residential project offers a perfect balance of durability, style, and comfort. We take pride in delivering homes that are not just structures, but vibrant communities built to the highest standards of safety and luxury.\"",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
     }
