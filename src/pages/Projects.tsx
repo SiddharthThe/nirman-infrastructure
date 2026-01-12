@@ -36,15 +36,6 @@ const Projects = () => {
       year: "2023"
     },
     {
-      id: 3,
-      title: "Shil Dam",
-      category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Water infrastructure project for regional irrigation and flood management.",
-      location: "Ratnagiri District",
-      year: "2022"
-    },
-    {
       id: 4,
       title: "Degree College",
       category: "government" as const,
@@ -187,15 +178,6 @@ const Projects = () => {
       description: "The Mandvi Jetty project highlights our specialized expertise in marine and coastal engineering. Designed to withstand harsh maritime environments, this infrastructure provides vital coastal connectivity and support for local maritime activities. The project showcases our capability in executing durable, large-scale civil works that meet stringent safety and environmental standards in challenging geographical locations.",
       location: "Mandvi, Ratnagiri",
       year: "2022"
-    },
-    {
-      id: 20,
-      title: "Savarkar Natyagruh",
-      category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Cultural auditorium and theatre facility for public performances.",
-      location: "Ratnagiri, Maharashtra",
-      year: "2023"
     },
     // Private Projects
     {

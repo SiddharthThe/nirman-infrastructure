@@ -26,10 +26,10 @@ const Gallery = ({ projects }: GalleryProps) => {
   );
 
   useEffect(() => {
-    // Animate gallery items on filter change
+    // Animate gallery items on filter change - optimized
     gsap.fromTo('.gallery-grid > *', 
-      { scale: 0.8, opacity: 0, y: 20 },
-      { scale: 1, opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.7)', stagger: 0.1 }
+      { scale: 0.95, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.3, ease: 'power2.out', stagger: 0.03 }
     );
   }, [filter]);
 
@@ -85,6 +85,7 @@ const Gallery = ({ projects }: GalleryProps) => {
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
             </div>
