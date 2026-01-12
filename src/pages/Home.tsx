@@ -43,13 +43,13 @@ const Home = () => {
                 title: "Guest House Ratnagiri",
                 category: "Residential",
                 image: "/assets/project-img/guest-house-ratnagiri.jpg",
-                description: "Modern solar-powered residential guest house featuring sustainable energy solutions and contemporary design."
+                description: "Completed in 2023, this modern guest house in Ratnagiri is designed to provide a premium hospitality experience. The project features contemporary architecture with a clean, minimalist aesthetic, offering a perfect balance of comfort and elegance for visitors. Built with high-quality materials and a focus on ventilation and natural light, it stands as a testament to our ability to deliver stylish and functional commercial living spaces."
               },
               {
                 title: "Mandvi Jetty - Coastal Infrastructure",
                 category: "Infrastructure",
                 image: "/assets/project-img/mandvi-jetty.jpg",
-                description: "Coastal pier infrastructure project extending into the Arabian Sea, enhancing maritime accessibility and tourism."
+                description: "The Mandvi Jetty project highlights our specialized expertise in marine and coastal engineering. Designed to withstand harsh maritime environments, this infrastructure provides vital coastal connectivity and support for local maritime activities. The project showcases our capability in executing durable, large-scale civil works that meet stringent safety and environmental standards in challenging geographical locations."
               }
             ].map((project, index) => (
               <div key={index} className="card-glow p-6">

@@ -22,7 +22,7 @@ const Projects = () => {
       title: "Panvel Dam",
       category: "government" as const,
       image: "/assets/project-img/panval-dam.jpg",
-      description: "Major water management infrastructure project for irrigation and water conservation.",
+      description: "The Panval Dam project is a significant achievement in our civil engineering portfolio, focused on sustainable water management and irrigation infrastructure. Designed to support the agricultural needs of the region, the dam features a robust concrete spillway system and precision-engineered embankments. This project demonstrates our capability in executing heavy civil works that require high technical accuracy to manage water flow and ensure long-term structural safety for the community.",
       location: "Panvel, Ratnagiri District",
       year: "2022"
     },
@@ -31,7 +31,7 @@ const Projects = () => {
       title: "Asode Dam",
       category: "government" as const,
       image: "/assets/project-img/asode-dam.jpg",
-      description: "River dam infrastructure project for irrigation, flood control, and water resource management.",
+      description: "The Asode Dam is a vital irrigation project designed to enhance water security and support the agricultural community in the region. Featuring a robust concrete weir and precision-engineered embankments, this infrastructure project demonstrates our expertise in managing water resources and executing large-scale civil works in challenging natural terrains. It stands as a testament to our commitment to building sustainable infrastructure that powers regional development.",
       location: "Asode, Maharashtra",
       year: "2023"
     },
@@ -48,8 +48,8 @@ const Projects = () => {
       id: 4,
       title: "Degree College",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Educational institution building with modern facilities and infrastructure.",
+      image: "/assets/project-img/degree-clg.png",
+      description: "The Degree College project is a significant educational landmark that showcases our expertise in large-scale institutional architecture. The building features a modern, multi-story design with a robust structural framework, incorporating expansive academic wings and an inviting entrance plaza. Designed to foster a superior learning environment, this project demonstrates our commitment to building durable and contemporary educational infrastructure for the next generation.",
       location: "Ratnagiri District",
       year: "2021"
     },
@@ -57,8 +57,8 @@ const Projects = () => {
       id: 5,
       title: "Tarangan",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Government institutional building project.",
+      image: "/assets/project-img/Tarangan.png",
+      description: "Tarangan is one of our most iconic and technically challenging projects, featuring a grand hemispherical dome and a specialized radial layout. This planetarium combines precision engineering with unique architectural forms to create an immersive educational space. It stands as a landmark of our ability to execute complex, non-traditional structures with mathematical accuracy and aesthetic beauty.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
     },
@@ -75,8 +75,8 @@ const Projects = () => {
       id: 7,
       title: "ST Stand",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "State Transport bus stand facility with passenger amenities.",
+      image: "/assets/project-img/bus-Stand.jpg",
+      description: "The Ratnagiri Central Bus Stand is a critical transportation hub designed for high-capacity public transit and passenger comfort. This large-scale infrastructure project features a modern, expansive terminal building with a signature red-tiled roof aesthetic that blends regional tradition with functional urban design. With well-organized arrival and departure bays, spacious waiting areas, and a durable structural framework, it stands as a landmark of our ability to deliver essential, high-traffic public facilities for the city.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
     },
@@ -103,7 +103,7 @@ const Projects = () => {
       title: "MBRS Building",
       category: "government" as const,
       image: "/assets/project-img/mbrs-ratnagiri.jpg",
-      description: "Multi-story government building with modern architecture.",
+      description: "The MBRS Ratnagiri project is a state-of-the-art facility dedicated to marine research and education. Designed with a modern architectural approach, the building features expansive lab spaces, coastal-resistant materials, and large window systems to maximize natural light. This project demonstrates our capability in constructing complex, sector-specific institutional buildings that meet the rigorous technical and environmental standards required for scientific research in a coastal setting.",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
     },
@@ -112,7 +112,7 @@ const Projects = () => {
       title: "Tilak Janmabhumi",
       category: "government" as const,
       image: "/assets/project-img/tilak-smarak-ratnagiri.jpg",
-      description: "Heritage memorial building featuring traditional architecture with modern restoration.",
+      description: "The Tilak Smarak project is a prestigious cultural landmark dedicated to the memory of Lokmanya Tilak. Our work involved the meticulous construction and restoration of this heritage-style structure, featuring traditional sloping tiled roofs and classic Konkan architecture. This project highlights our ability to blend historical design with modern structural stability, preserving the region's rich heritage for future generations.",
       location: "Ratnagiri",
       year: "2022"
     },
@@ -120,7 +120,7 @@ const Projects = () => {
       id: 12,
       title: "Rural Hospital Devrukh",
       category: "government" as const,
-      image: "/placeholder.svg",
+      image: "/assets/project-img/Rural-Hospital-Devrukh.png",
       description: "Healthcare facility serving rural communities with modern medical infrastructure.",
       location: "Devrukh, Ratnagiri",
       year: "2023"
@@ -139,7 +139,7 @@ const Projects = () => {
       title: "Coastal Police Station at Purnagad",
       category: "government" as const,
       image: "/assets/project-img/police-station-nate.jpg",
-      description: "Coastal security police station with modern facilities.",
+      description: "The Purnagad Police Station is a modern administrative facility designed to enhance public safety and law enforcement efficiency. This project features a robust structural design, an integrated observation tower, reflecting our commitment to sustainable and functional government infrastructure. Built to serve the community, the building combines durability with a professional aesthetic to provide a secure environment for police operations",
       location: "Purnagad, Ratnagiri",
       year: "2023"
     },
@@ -147,8 +147,8 @@ const Projects = () => {
       id: 15,
       title: "Ambedkar Bhavan",
       category: "government" as const,
-      image: "/assets/project-img/ambedkar-bhavan.jpg",
-      description: "Large-scale public institutional building with distinctive architecture.",
+      image: "/assets/project-img/ambedkar-bhavan.png",
+      description: "Ambedkar Bhavan is a major institutional landmark that showcases our expertise in building significant and administrative centers. This sprawling complex features a prominent central dome and symmetrical architectural wings, designed to provide a dignified and functional space for administrative activities. The project highlights our ability to execute large-scale institutional designs that combine structural grandeur with practical utility.",
       location: "Ratnagiri District",
       year: "2021"
     },
@@ -165,8 +165,8 @@ const Projects = () => {
       id: 17,
       title: "RDCC Bank, Ratnagiri",
       category: "government" as const,
-      image: "/placeholder.svg",
-      description: "Ratnagiri District Central Co-operative Bank building.",
+      image: "/assets/project-img/RDCC-Bank.png",
+      description: "The RDCC Bank project showcases our expertise in delivering high-standard commercial and financial infrastructure. This multi-story bank building features a bold, modern facade, integrated security zones, and a professional design tailored for high-traffic financial services, standing as a prominent landmark in Ratnagiri’s corporate landscape.",
       location: "Ratnagiri, Maharashtra",
       year: "2022"
     },
@@ -184,7 +184,7 @@ const Projects = () => {
       title: "Mandvi",
       category: "government" as const,
       image: "/assets/project-img/mandvi-jetty.jpg",
-      description: "Coastal pier infrastructure extending into the Arabian Sea.",
+      description: "The Mandvi Jetty project highlights our specialized expertise in marine and coastal engineering. Designed to withstand harsh maritime environments, this infrastructure provides vital coastal connectivity and support for local maritime activities. The project showcases our capability in executing durable, large-scale civil works that meet stringent safety and environmental standards in challenging geographical locations.",
       location: "Mandvi, Ratnagiri",
       year: "2022"
     },
