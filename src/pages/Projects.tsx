@@ -39,7 +39,7 @@ const Projects = () => {
       id: 3,
       title: "Shil Dam",
       category: "government" as const,
-      image: "public/assets/project-img/Shil-Dam.png",
+      image: "/assets/project-img/Shil-Dam.png",
       description: "The Shil Dam project is a major civil engineering feat designed to strengthen the regional water supply and irrigation network. This project involved the construction of a robust concrete gravity wall and a comprehensive water storage system, engineered to manage water resources effectively for local agriculture. It stands as a powerful example of our firm's technical expertise in executing large-scale, durable infrastructure that supports rural development and community growth.",
       location: "Ratnagiri District",
       year: "2022"
@@ -84,7 +84,7 @@ const Projects = () => {
       id: 8,
       title: "MIDC Guest House",
       category: "government" as const,
-      image: "public/assets/project-img/MIDC-Guest-House.png",
+      image: "/assets/project-img/MIDC-Guest-House.png",
       description: "Completed in 2023, this modern guest house in Ratnagiri is designed to provide a premium hospitality experience. The project features contemporary architecture with a clean, minimalist aesthetic, offering a perfect balance of comfort and elegance for visitors. Built with high-quality materials and a focus on ventilation and natural light, it stands as a testament to our ability to deliver stylish and functional commercial living spaces.",
       location: "MIDC Ratnagiri",
       year: "2023"
@@ -192,7 +192,7 @@ const Projects = () => {
       id: 20,
       title: "Savarkar Natyagruh",
       category: "government" as const,
-      image: "public/assets/project-img/Savarkare-natyaGruh.png",
+      image: "/assets/project-img/Savarkare-natyaGruh.png",
       description: "The Swatantryaveer Savarkar Natyagruh is a crown jewel in our portfolio of cultural and public infrastructure. This state-of-the-art auditorium features a majestic modern facade with a grand circular entrance and premium lighting design. Built to world-class standards, the project includes high-end acoustic engineering, a sophisticated stage layout, and an expansive seating capacity, making it the premier destination for performing arts and cultural excellence in Ratnagiri.",
       location: "Ratnagiri, Maharashtra",
       year: "2023"
